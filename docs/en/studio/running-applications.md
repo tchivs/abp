@@ -187,6 +187,8 @@ We have several options in C# applications. Those options are `Start`(If the app
 
 > When *Watch* is enable you should see an *eye* icon next to the application name.
 
+> Hint: Performing CTRL+Click on the start icon left to a stopped C# application equals to `Build & Start` command. Same applies for folders.
+
 ![csharp-application-context-menu-run-connection](images/solution-runner/csharp-application-context-menu-run-connection.png)
 
 ### Build

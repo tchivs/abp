@@ -29,7 +29,6 @@ public class AbpRebusEventBusOptions
 
     private void DefaultConfigure(RebusConfigurer configure)
     {
-        configure.Subscriptions(s => s.StoreInMemory());
         configure.Transport(t => t.UseInMemoryTransport(new InMemNetwork(), InputQueueName));
     }
 }

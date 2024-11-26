@@ -12,3 +12,4 @@ However, there are some topics that you should care about when you are deploying
 * [Optimization for Production](./optimizing-production.md): Tips and suggestions for optimizing your application in production environments.
 * [Deploying to a Clustered Environment](./clustered-environment.md): Explains how to configure your application when you want to run multiple instances of your application concurrently.
 * [Deploying Distributed / Microservice Solutions](./distributed-microservice.md): Deployment notes for solutions consisting of multiple applications and/or services.
+* [Forwarded Headers](./forwarded-headers): Explains how to configure the application to trust headers forwarded by reverse proxies and recover the original request information from the `X-Forwarded-For` and `X-Forwarded-Proto` headers.

@@ -192,4 +192,24 @@ public class MongoBlogPostRepository : MongoDbRepository<CmsKitMongoDbContext, B
         return await (await GetMongoQueryableAsync(cancellationToken))
             .AnyAsync(x => x.Status == BlogPostStatus.WaitingForReview, cancellationToken);
     }
+
+    public async Task UpdateBlogAsync(Guid sourceBlogId, Guid? targetBlogId, CancellationToken cancellationToken = default)
+    {
+        cancellationToken = GetCancellationToken(cancellationToken);
+        var blogPosts = await (await GetMongoQueryableAsync(cancellationToken)).Where(x => x.BlogId == sourceBlogId).ToListAsync(cancellationToken);
+        if (targetBlogId.HasValue)
+        {
+            foreach (var blogPost in blogPosts)
+            {
+                blogPost.SetBlogId(targetBlogId.Value);
+            }
+            
+            await UpdateManyAsync(blogPosts, false, cancellationToken);
+        }
+        else
+        {
+            
+            await DeleteManyAsync(blogPosts, false, cancellationToken);
+        }
+    }
 }

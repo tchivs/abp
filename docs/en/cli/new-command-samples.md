@@ -221,6 +221,79 @@ As seen below, ABP libraries are local project references.
 </ItemGroup>    
 ```
 
+## Using Existing Configuration
+
+If you want to programmaticaly create solutions, you can use an existing configuration instead of passing parameters to CLI one by one. ABP Studio keeps the solution creation history locally in `(UserProfile)\.abp\studio\solution-creation-history.json` file, there you can find the configurations of the solutions created in your machine.
+
+### Using a Solution Id
+
+In `*.abpsln` file of the solutions, there is an ID field that you can use to recreate a solution. To do this, pass the id to cli using `-shi or --solution-history-id` parameters.
+
+```bash
+abp new -shi dbb1afa9-190e-419a-842d-2780bb1bad1f
+abp new -shi dbb1afa9-190e-419a-842d-2780bb1bad1f -o D:\test\Acme.BookStore
+```
+
+### Using a JSON Configuration File
+
+You can also use a configuration file to create solutions. You need to use `-rcp or ready-config-path` parameters to do that.
+
+```bash
+abp new -rcp MyTests\config.json
+abp new -rcp D:\MyTests\config.json
+abp new -rcp D:\MyTests\config.json -o D:\test\Acme.BookStore
+```
+
+To prepare a config file, you can check the records in `solution-creation-history.json` file mentioned above. An example config file would look like that:
+
+```json
+{
+        "solutionName": {
+          "fullName": "Acme.BookStore",
+          "companyName": "Acme",
+          "projectName": "BookStore"
+        },
+        "pro": true,
+        "useOpenSourceTemplate": false,
+        "booksSample": false,
+        "databaseProvider": "ef",
+        "createInitialMigration": true,
+        "runDbMigrator": true,
+        "uiFramework": "angular",
+        "theme": "leptonx",
+        "themeStyle": "system",
+        "mobileFramework": "none",
+        "databaseManagementSystem": "sqlserver",
+        "databaseManagementSystemBuilderExtensionMethod": "UseSqlServer",
+        "connectionString": "Server=(LocalDb)\\\\MSSQLLocalDB;Database=BookStore;Trusted_Connection=True;TrustServerCertificate=true",
+        "mauiBlazorApplicationIdGuid": "d3499a09-f3d4-4bb7-9d58-4c7b1caee331",
+        "tiered": false,
+        "publicWebsite": false,
+        "cmskit": false,
+        "openIddictAdmin": true,
+        "languageManagement": true,
+        "textTemplateManagement": true,
+        "multiTenancy": true,
+        "auditLogging": false,
+        "gdpr": true,
+        "chat": false,
+        "fileManagement": false,
+        "socialLogins": true,
+        "includeTests": true,
+        "distributedEventBus": "none",
+        "publicRedis": false,
+        "separateTenantSchema": false,
+        "progressiveWebApp": false,
+        "runProgressiveWebAppSupport": false,
+        "runInstallLibs": false,
+        "runBundling": false,
+        "kubernetesConfiguration": true,
+        "templateName": "app"
+      }
+```
+
+
+
 ## See Also
 
 * [ABP CLI documentation](../cli/index.md)

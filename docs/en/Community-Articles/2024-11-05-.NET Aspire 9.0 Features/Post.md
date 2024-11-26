@@ -1,11 +1,11 @@
 # .NET Aspire 9.0 Features
 
-.NET Aspire 9.0 Release Candidate 1 is the next major release, supporting both .NET 8 and .NET 9. This version includes new features and improvements.
+.NET Aspire 9.0 is the next major release, supporting both .NET 8 and .NET 9. This version includes new features and improvements.
 
-## Upgrade to .NET Aspire 9 RC1
+## Upgrade to .NET Aspire
 
 Now, you don't need workloads to develop .NET Aspire applications. In your project, you can add an SDK reference to `Aspire.AppHost.Sdk`.
-For more information, you can check out [https://learn.microsoft.com/en-us/dotnet/aspire/whats-new/dotnet-aspire-9-release-candidate-1?tabs=windows&pivots=visual-studio#upgrade-to-net-aspire-9-rc1](https://learn.microsoft.com/en-us/dotnet/aspire/whats-new/dotnet-aspire-9-release-candidate-1?tabs=windows&pivots=visual-studio#upgrade-to-net-aspire-9-rc1) which explains upgrading an existing project in details.
+For more information, you can check out [https://learn.microsoft.com/en-us/dotnet/aspire/whats-new/dotnet-aspire-9?tabs=windows#upgrade-to-net-aspire-9](https://learn.microsoft.com/en-us/dotnet/aspire/whats-new/dotnet-aspire-9?tabs=windows#upgrade-to-net-aspire-9) which explains upgrading an existing project in details.
 
 ## Dashboard
 
@@ -15,13 +15,13 @@ For more information, you can check out [https://learn.microsoft.com/en-us/dotne
 * **Mobile and responsive support**: The .NET Aspire dashboard is now mobile-friendly.
 * **Sensitive properties**: Properties can be marked as sensitive, automatically masking them in the dashboard UI.
 * **Volumes**: Configured container volumes are listed in resource details.
-* **Health checks**: .NET Aspire 9 RC1 adds support for health checks.
+* **Health checks**: .NET Aspire 9 adds support for health checks.
 
 ![Resource Lifecycle](./aspire_resource_lifecycle.jpg)
 
 ## Telemetry
 
-.NET Aspire 9 RC1 comes with many new features to the Telemetry service.
+.NET Aspire 9 comes with many new features to the Telemetry service.
 
 * **Improve telemetry filtering**: Telemetry data can now be filtered by attribute values. 
 * **Combine telemetry from multiple resources**: If a resource has multiple replicas, you can now filter telemetry data to view from all instances.
@@ -32,14 +32,14 @@ For more information, you can check out [https://learn.microsoft.com/en-us/dotne
 ## Orchestration
 
 The .NET App Host is a core component of the .NET runtime that helps launch and execute .NET applications. 
-.NET Aspire 9 RC1 introduces many new features to the app host. Let's take a look;
+.NET Aspire 9 introduces many new features to the app host. Let's take a look;
 
 * **Waiting for dependencies**: You can configure a resource to wait for another resource to start before starting.
 * **Resource health checks**: The `Waiting for dependencies` feature uses health checks to determine if a resource is ready. 
 
 ## Integrations
 
-.NET Aspire has integrations with some services and tools that make it easy to get started. New integrations are coming with .NET Aspire 9 RC1.
+.NET Aspire has integrations with some services and tools that make it easy to get started. New integrations are coming with .NET Aspire 9.
 
 * Redis Insight
 * OpenAI (Preview)

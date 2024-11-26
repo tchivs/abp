@@ -11,6 +11,7 @@ export type StyleDefinition =
 export type ImportDefinition = {
   path: string;
   importName: string;
+  provider?: string;
 };
 
 export const styleMap = new Map<ThemeOptionsEnum, StyleDefinition[]>();
@@ -267,14 +268,16 @@ export const importMap = new Map<ThemeOptionsEnum, ImportDefinition[]>();
 importMap.set(ThemeOptionsEnum.Basic, [
   {
     path: '@abp/ng.theme.basic',
-    importName: 'ThemeBasicModule.forRoot()',
+    importName: 'ThemeBasicModule',
+    provider: 'provideThemeBasicConfig',
   },
 ]);
 
 importMap.set(ThemeOptionsEnum.Lepton, [
   {
     path: '@volo/abp.ng.theme.lepton',
-    importName: 'ThemeLeptonModule.forRoot()',
+    importName: 'ThemeLeptonModule',
+    provider: 'provideThemeLepton',
   },
 ]);
 

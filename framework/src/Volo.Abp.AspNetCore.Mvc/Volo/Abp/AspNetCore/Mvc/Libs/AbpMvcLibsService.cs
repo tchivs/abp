@@ -34,7 +34,7 @@ public class AbpMvcLibsService : IAbpMvcLibsService, ITransientDependency
 
             app.Use(async (httpContext, next) =>
             {
-                if (!await CheckLibsAsyncOnceAsync(httpContext))
+                if (!httpContext.Request.IsAjax() && !await CheckLibsAsyncOnceAsync(httpContext))
                 {
                     var errorPage = new AbpMvcLibsErrorPage();
                     await errorPage.ExecuteAsync(httpContext);

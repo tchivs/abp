@@ -74,7 +74,7 @@ dotnet tool install -g Volo.Abp.Studio.Cli
 Create an empty folder, open a command-line terminal and execute the following command in the terminal:
 
 ````bash
-abp new TodoApp{{if UI=="Blazor"}} -u blazor{{else if UI=="BlazorServer"}} -u blazor-server{{else if UI=="NG"}} -u angular{{end}}{{if DB=="Mongo"}} -d mongodb{{end}}
+abp new TodoApp{{if UI=="Blazor"}} -u blazor{{else if UI=="BlazorServer"}} -u blazor-server{{else if UI=="BlazorWebApp"}} -u blazor-webapp{{else if UI=="NG"}} -u angular{{end}}{{if DB=="Mongo"}} -d mongodb{{end}}
 ````
 
 {{if UI=="NG"}}
@@ -113,13 +113,14 @@ abp install-libs
 
 > We suggest you install [Yarn](https://classic.yarnpkg.com/) to prevent possible package inconsistencies, if you haven't installed it yet.
 
-{{if UI=="Blazor" || UI=="BlazorServer"}}
+{{if UI=="Blazor" || UI=="BlazorWebApp"}}
 
 #### Bundling and Minification
 
 `abp bundle` command offers bundling and minification support for client-side resources (JavaScript and CSS files) for Blazor projects. This command automatically run when you create a new solution with the [ABP CLI](../../../cli/index.md).
 
-However, sometimes you might need to run this command manually. To update script & style references without worrying about dependencies, ordering, etc. in a project, you can run this command in the directory of your blazor application:
+However, sometimes you might need to run this command manually. To update script & style references without worrying about dependencies, ordering, etc. in a project, you can run this command in the directory of your `Blazor.Client` application:
+
 
 ````bash
 abp bundle
@@ -131,7 +132,7 @@ abp bundle
 
 ### Run the Application
 
-{{if UI=="MVC" || UI=="BlazorServer"}}
+{{if UI=="MVC" || UI=="BlazorServer" || UI=="BlazorWebApp"}}
 
 It is good to run the application before starting the development. Ensure the {{if UI=="BlazorServer"}}`TodoApp.Blazor`{{else}}`TodoApp.Web`{{end}} project is the startup project, then run the application (Ctrl+F5 in Visual Studio) to see the initial UI:
 
@@ -147,10 +148,6 @@ Ensure the `TodoApp.HttpApi.Host` project is the startup project, then run the a
 ![todo-swagger-ui-initial](../images/todo-swagger-ui-initial.png)
 
 You can explore and test your HTTP API with this UI. Now, we can set the `TodoApp.Blazor` as the startup project and run it to open the actual Blazor application UI:
-
-{{else if UI=="BlazorWebApp" }}
-
-It is good to run the application before starting the development. Ensure the `TodoApp.Blazor` project is the startup project, then run the application (Ctrl+F5 in Visual Studio) to see the initial UI:
 
 {{else if UI=="NG"}}
 
@@ -589,7 +586,7 @@ If you open the [Swagger UI](https://swagger.io/tools/swagger-ui/) by entering t
 
 ### Index.razor.cs
 
-Open the `Index.razor.cs` file in the `Pages` folder of the {{if UI=="BlazorWebApp"}} *TodoApp.Blazor.Client* {{else}}*TodoApp.Blazor*{{end}} project and replace the content with the following code block:
+Open the `Index.razor.cs` file in the `Pages` folder of the {{if UI=="Blazor" || UI=="BlazorWebApp"}} *TodoApp.Blazor.Client* {{else}}*TodoApp.Blazor*{{end}} project and replace the content with the following code block:
 
 ```csharp
 using Microsoft.AspNetCore.Components;
@@ -638,7 +635,7 @@ See the *Dynamic C# Proxies & Auto API Controllers* section below to learn how w
 
 ### Index.razor
 
-Open the `Index.razor` file in the `Pages` folder of the {{if UI=="BlazorWebApp"}} *TodoApp.Blazor.Client* {{else}} *TodoApp.Blazor* {{end}} project and replace the content with the following code block:
+Open the `Index.razor` file in the `Pages` folder of the {{if UI=="Blazor" || UI=="BlazorWebApp"}} *TodoApp.Blazor.Client* {{else}} *TodoApp.Blazor* {{end}} project and replace the content with the following code block:
 
 ```xml
 @page "/"
@@ -680,7 +677,7 @@ Open the `Index.razor` file in the `Pages` folder of the {{if UI=="BlazorWebApp"
 
 ### Index.razor.css
 
-As the final touch, open the `Index.razor.css` file in the `Pages` folder of the {{if UI=="BlazorWebApp"}}*TodoApp.Blazor.Client*{{else}}*TodoApp.Blazor*{{end}} project and replace it with the following content:
+As the final touch, open the `Index.razor.css` file in the `Pages` folder of the {{if UI=="Blazor" || UI=="BlazorWebApp"}}*TodoApp.Blazor.Client*{{else}}*TodoApp.Blazor*{{end}} project and replace it with the following content:
 
 ```css
 #TodoList{

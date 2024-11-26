@@ -15,7 +15,7 @@ public class SwaggerHtmlResolver : ISwaggerHtmlResolver, ITransientDependency
 
         var html = new StreamReader(stream!)
             .ReadToEnd()
-            .Replace("SwaggerUIBundle(configObject)", "abp.SwaggerUIBundle(configObject)");
+            .Replace("src=\"index.js\"", "src=\"ui/index.js\"");
 
         return new MemoryStream(Encoding.UTF8.GetBytes(html));
     }

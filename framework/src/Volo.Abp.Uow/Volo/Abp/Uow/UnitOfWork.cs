@@ -152,7 +152,6 @@ public class UnitOfWork : IUnitOfWork, ITransientDependency
                     await UnitOfWorkEventPublisher.PublishLocalEventsAsync(
                         localEventsToBePublished
                     );
-                    LocalEvents.AddRange(GetEventsRecords(LocalEventWithPredicates));
                 }
 
                 if (DistributedEvents.Any())
@@ -163,10 +162,12 @@ public class UnitOfWork : IUnitOfWork, ITransientDependency
                     await UnitOfWorkEventPublisher.PublishDistributedEventsAsync(
                         distributedEventsToBePublished
                     );
-                    DistributedEvents.AddRange(GetEventsRecords(DistributedEventWithPredicates));
                 }
 
                 await SaveChangesAsync(cancellationToken);
+
+                LocalEvents.AddRange(GetEventsRecords(LocalEventWithPredicates));
+                DistributedEvents.AddRange(GetEventsRecords(DistributedEventWithPredicates));
             }
 
             await CommitTransactionsAsync(cancellationToken);

@@ -630,13 +630,7 @@ public abstract class AbpDbContext<TDbContext> : DbContext, IAbpEfCoreDbContext,
             originalExtraProperties = entry.OriginalValues.GetValue<ExtraPropertyDictionary>(nameof(IHasExtraProperties.ExtraProperties));
         }
 
-        //TODO: Reload will throw an exception. Check it when new EF Core versions released.
-        //entry.Reload();
-
-        var storeValues = entry.OriginalValues;
-        entry.CurrentValues.SetValues(storeValues);
-        entry.OriginalValues.SetValues(storeValues);
-        entry.State = EntityState.Unchanged;
+        entry.Reload();
 
         if (entry.Entity is IHasExtraProperties)
         {
@@ -785,21 +779,18 @@ public abstract class AbpDbContext<TDbContext> : DbContext, IAbpEfCoreDbContext,
                 return;
             }
 
-            AbpDateTimeValueConverter.Clock = Clock;
-            AbpNullableDateTimeValueConverter.Clock = Clock;
-
             foreach (var property in mutableEntityType.GetProperties().
                          Where(property => property.PropertyInfo != null &&
                                            (property.PropertyInfo.PropertyType == typeof(DateTime) || property.PropertyInfo.PropertyType == typeof(DateTime?)) &&
                                            property.PropertyInfo.CanWrite &&
                                            ReflectionHelper.GetSingleAttributeOfMemberOrDeclaringTypeOrDefault<DisableDateTimeNormalizationAttribute>(property.PropertyInfo) == null))
             {
-				modelBuilder
+                modelBuilder
                     .Entity<TEntity>()
                     .Property(property.Name)
                     .HasConversion(property.ClrType == typeof(DateTime)
-                        ? new AbpDateTimeValueConverter()
-                        : new AbpNullableDateTimeValueConverter());
+                        ? new AbpDateTimeValueConverter(Clock)
+                        : new AbpNullableDateTimeValueConverter(Clock));
             }
         }
     }

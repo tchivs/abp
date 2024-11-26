@@ -893,7 +893,7 @@
               "items": [
                 {
                   "text": "Overview",
-                  "path": "framework/ui/mvc-razor-pages/overall"
+                  "path": "framework/ui/mvc-razor-pages/overall.md"
                 },
                 {
                   "text": "Navigation / Menus",

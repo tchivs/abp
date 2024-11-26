@@ -2,7 +2,7 @@
 ````json
 //[doc-params]
 {
-    "UI": ["MVC","Blazor","BlazorServer","NG"],
+    "UI": ["MVC","Blazor","BlazorServer", "BlazorWebApp", "NG"],
     "DB": ["EF","Mongo"]
 }
 ````
@@ -514,13 +514,13 @@ Now you can see the final result on your browser:
 
 ![Book list final result](images/bookstore-book-list-angular.png)
 
-{{else if UI == "Blazor" || UI == "BlazorServer"}}
+{{else if UI == "Blazor" || UI == "BlazorServer" || UI == "BlazorWebApp"}}
 
 ## Create a Books Page
 
-It's time to create something visible and usable! Right click on the `Pages` folder under the {{ if UI == "Blazor"}}`Acme.BookStore.Blazor.Client`{{ else }}`Acme.BookStore.Blazor`{{ end }} project and add a new **razor component**, named `Books.razor`:
+It's time to create something visible and usable! Right click on the `Pages` folder under the {{ if UI == "BlazorServer" }}`Acme.BookStore.Blazor`{{ else }}`Acme.BookStore.Blazor.Client`{{ end }} project and add a new **razor component**, named `Books.razor`:
 
-{{ if UI == "Blazor"}}
+{{ if UI == "Blazor" || UI == "BlazorWebApp" }}
 ![blazor-add-books-component](images/blazor-add-books-component-client.png)
 {{ else }}
 ![blazor-add-books-component](images/blazor-add-books-component.png)
@@ -540,7 +540,7 @@ Replace the contents of this component as shown below:
 
 ### Add the Books Page to the Main Menu
 
-Open the `BookStoreMenuContributor` class in the {{ if UI == "Blazor"}}`Acme.BookStore.Blazor.Client`{{ else }}`Acme.BookStore.Blazor`{{ end }} project add the following code to the end of the `ConfigureMainMenuAsync` method:
+Open the `BookStoreMenuContributor` class in the {{ if UI == "BlazorServer"}}`Acme.BookStore.Blazor`{{ else }}`Acme.BookStore.Blazor.Client`{{ end }} project add the following code to the end of the `ConfigureMainMenuAsync` method:
 
 ````csharp
 context.Menu.AddItem(

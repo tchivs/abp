@@ -2,7 +2,7 @@
 ````json
 //[doc-params]
 {
-    "UI": ["MVC","Blazor","BlazorServer","NG"],
+    "UI": ["MVC","Blazor","BlazorServer","BlazorWebApp","NG"],
     "DB": ["EF","Mongo"]
 }
 ````
@@ -1071,11 +1071,11 @@ That's all. Just run the application and try to create or edit an author.
 
 {{end}}
 
-{{if UI == "Blazor" || UI == "BlazorServer"}}
+{{if UI == "Blazor" || UI == "BlazorServer" || UI == "BlazorWebApp" }}
 
 ### The Book List
 
-It is very easy to show the *Author Name* in the book list. Open the `/Pages/Books.razor` file in the `Acme.BookStore.Blazor.Client` project and add the following `DataGridColumn` definition just after the `Name` (book name) column:
+It is very easy to show the *Author Name* in the book list. Open the `/Pages/Books.razor` file in the {{ if UI == "BlazorServer" }}`Acme.BookStore.Blazor`{{ else }}`Acme.BookStore.Blazor.Client`{{ end }} project and add the following `DataGridColumn` definition just after the `Name` (book name) column:
 
 ````xml
 <DataGridColumn TItem="BookDto"

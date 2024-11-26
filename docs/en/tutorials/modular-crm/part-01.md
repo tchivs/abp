@@ -10,7 +10,7 @@
 }
 ````
 
-Follow the *[Get Stared](../../get-started/layered-web-application.md)* guide to create a new layered web application with the following configuration:
+Follow the *[Get Started](../../get-started/layered-web-application.md)* guide to create a new layered web application with the following configuration:
 
 * **Solution name**: `ModularCrm`
 * **UI Framework**: ASP.NET Core MVC / Razor Pages

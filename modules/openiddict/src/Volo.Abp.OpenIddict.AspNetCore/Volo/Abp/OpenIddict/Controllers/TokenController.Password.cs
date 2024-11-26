@@ -127,7 +127,12 @@ public partial class TokenController
                             return await HandlePeriodicallyChangePasswordAsync(request, user, request.Password);
                         }
 
-                        errorDescription = "You are not allowed to login! Your account is inactive or needs to confirm your email/phone number.";
+                        if (user.IsActive)
+                        {
+                            return await HandleConfirmUserAsync(request, user);
+                        }
+
+                        errorDescription = "You are not allowed to login! Your account is inactive.";
                     }
                     else
                     {
@@ -235,7 +240,7 @@ public partial class TokenController
                 items: new Dictionary<string, string>
                 {
                     [OpenIddictServerAspNetCoreConstants.Properties.Error] = OpenIddictConstants.Errors.InvalidGrant,
-                    [OpenIddictServerAspNetCoreConstants.Properties.ErrorDescription] = nameof(SignInResult.RequiresTwoFactor)
+                    [OpenIddictServerAspNetCoreConstants.Properties.ErrorDescription] = AbpErrorDescriptionConsts.RequiresTwoFactor
                 },
                 parameters: new Dictionary<string, object>
                 {
@@ -335,6 +340,26 @@ public partial class TokenController
 
             return Forbid(properties, OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
         }
+    }
+
+    protected virtual Task<IActionResult> HandleConfirmUserAsync(OpenIddictRequest request, IdentityUser user)
+    {
+        Logger.LogInformation($"{request.Username} needs to confirm email/phone number");
+
+        var properties = new AuthenticationProperties(
+            items: new Dictionary<string, string>
+            {
+                [OpenIddictServerAspNetCoreConstants.Properties.Error] = OpenIddictConstants.Errors.InvalidGrant,
+                [OpenIddictServerAspNetCoreConstants.Properties.ErrorDescription] = AbpErrorDescriptionConsts.RequiresConfirmUser
+            },
+            parameters: new Dictionary<string, object>
+            {
+                ["userId"] = user.Id.ToString("N"),
+                ["email"] = user.Email,
+                ["phoneNumber"] = user.PhoneNumber ?? ""
+            });
+
+        return Task.FromResult<IActionResult>(Forbid(properties, OpenIddictServerAspNetCoreDefaults.AuthenticationScheme));
     }
 
     protected virtual async Task<IActionResult> SetSuccessResultAsync(OpenIddictRequest request, IdentityUser user)
