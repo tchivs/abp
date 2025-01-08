@@ -1,37 +1,42 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Routing;
-using Volo.Abp.UI.Navigation;
+using Volo.Abp.AspNetCore.Components.Web.Theming.Layout;
 
 namespace Volo.Abp.AspNetCore.Components.Web.BasicTheme.Themes.Basic;
 
 public partial class SecondLevelNavMenuItem : IDisposable
 {
-    [Inject] private NavigationManager NavigationManager { get; set; }
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
+    [Inject]
+    protected PageLayout PageLayout { get; set; }
 
     [Parameter]
-    public ApplicationMenuItem MenuItem { get; set; }
+    public MenuViewModel Menu { get; set; }
 
-    public bool IsSubMenuOpen { get; set; }
+    [Parameter]
+    public MenuItemViewModel MenuItem { get; set; }
 
     protected override void OnInitialized()
     {
         NavigationManager.LocationChanged += OnLocationChanged;
     }
 
-    private void ToggleSubMenu()
+    protected virtual void OnLocationChanged(object sender, LocationChangedEventArgs e)
     {
-        IsSubMenuOpen = !IsSubMenuOpen;
+        Menu.CloseAll();
+        Menu.InvokeStateChanged();
     }
 
-    public void Dispose()
+    protected virtual void ToggleMenu()
+    {
+        Menu.ToggleOpen(MenuItem);
+    }
+
+    public virtual void Dispose()
     {
         NavigationManager.LocationChanged -= OnLocationChanged;
-    }
-
-    private void OnLocationChanged(object sender, LocationChangedEventArgs e)
-    {
-        IsSubMenuOpen = false;
-        InvokeAsync(StateHasChanged);
     }
 }

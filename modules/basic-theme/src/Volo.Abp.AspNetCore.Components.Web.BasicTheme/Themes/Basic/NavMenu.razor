@@ -2,6 +2,6 @@
 {
     foreach (var menuItem in Menu.Items)
     {
-        <FirstLevelNavMenuItem MenuItem="menuItem" />
+        <FirstLevelNavMenuItem Menu="@Menu" MenuItem="@menuItem" />
     }
 }
