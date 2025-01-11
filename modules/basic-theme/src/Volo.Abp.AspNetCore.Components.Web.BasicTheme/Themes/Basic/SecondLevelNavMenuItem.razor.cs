@@ -1,23 +1,23 @@
 ﻿using System;
+using Blazorise;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Routing;
-using Volo.Abp.AspNetCore.Components.Web.Theming.Layout;
+using Volo.Abp.UI.Navigation;
 
 namespace Volo.Abp.AspNetCore.Components.Web.BasicTheme.Themes.Basic;
 
 public partial class SecondLevelNavMenuItem : IDisposable
 {
+    [Parameter]
+    public ApplicationMenuItem MenuItem { get; set; } = default!;
+
+    [Parameter]
+    public  Dropdown ParentDropdown { get; set; } = default!;
+
+    private Dropdown _dropdown;
+
     [Inject]
     private NavigationManager NavigationManager { get; set; }
-
-    [Inject]
-    protected PageLayout PageLayout { get; set; }
-
-    [Parameter]
-    public MenuViewModel Menu { get; set; }
-
-    [Parameter]
-    public MenuItemViewModel MenuItem { get; set; }
 
     protected override void OnInitialized()
     {
@@ -26,13 +26,8 @@ public partial class SecondLevelNavMenuItem : IDisposable
 
     protected virtual void OnLocationChanged(object sender, LocationChangedEventArgs e)
     {
-        Menu.CloseAll();
-        Menu.InvokeStateChanged();
-    }
-
-    protected virtual void ToggleMenu()
-    {
-        Menu.ToggleOpen(MenuItem);
+        ParentDropdown?.Hide();
+        _dropdown?.Hide();
     }
 
     public virtual void Dispose()
