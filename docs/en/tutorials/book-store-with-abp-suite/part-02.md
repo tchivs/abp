@@ -110,14 +110,22 @@ ABP Suite will generate the necessary code for you. It generates:
 
 It will take some time to complete the process. After the process is completed, you will see a success message, you can click the *Ok* button, and then run the application by clicking the *Start* button (or alternatively, directly clicking the *run* icon) in the *Solution Runner* panel:
 
-{{ if UI === "MVC"}}
+{{ if UI == "MVC" }}
+
 ![](./images/book-store-studio-run-app-mvc.png)
-{{ else if UI === "Angular" }}
+
+{{ else if UI == "Angular" }}
+
 ![](./images/book-store-studio-run-app-angular.png)
-{{ else if UI === "MAUIBlazor" "}}
+
+{{ else if UI == "MAUIBlazor" }}
+
 ![](./images/book-store-studio-run-app-mauiblazor.png)
+
 {{ else }}
+
 ![](./images/book-store-studio-run-app-blazor.png)
+
 {{ end }}
 
 After the application is started, you can right-click and *Browse* on the application to open it in the ABP Studio's pre-integrated browser. You can see the Books page in the following figure with a single record:

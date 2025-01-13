@@ -59,14 +59,22 @@ After, specifying the metadata, you can click the *Ok* button to close the modal
 
 It will take some time to complete the process. After the process is completed, you will see a success message, you can click the *Ok* button, and then run the application by clicking the *Start* button (or alternatively, directly clicking the *run* icon) in the *Solution Runner* panel:
 
-{{ if UI === "MVC"}}
+{{ if UI == "MVC" }}
+
 ![](./images/book-store-studio-run-app-mvc.png)
-{{ else if UI === "Angular" }}
+
+{{ else if UI == "Angular" }}
+
 ![](./images/book-store-studio-run-app-angular.png)
-{{ else if UI === "MAUIBlazor" "}}
+
+{{ else if UI == "MAUIBlazor" }}
+
 ![](./images/book-store-studio-run-app-mauiblazor.png)
+
 {{ else }}
+
 ![](./images/book-store-studio-run-app-blazor.png)
+
 {{ end }}
 
 After the application is started, you can right-click and *Browse* on the application to open it in the ABP Studio's pre-integrated browser. You can first create an author and then create a book with the author for testing:
@@ -83,11 +91,11 @@ Since you completed the bookstore application, now we can check the generated te
 
 There are several test projects in the solution (slightly differs based on your _UI_ and _Database_ selection):
 
-{{ if DB === "EF" }}
+{{ if DB == "EF" }}
 
 ![](./images/abp-suite-solution-test-projects-ef-core.png)
 
-{{ else if DB === "Mongo" }}
+{{ else if DB == "Mongo" }}
 
 ![](./images/abp-suite-solution-test-projects-mongo.png)
 
@@ -95,11 +103,11 @@ There are several test projects in the solution (slightly differs based on your 
 
 ABP Suite generated unit & integration tests, for the `Book` & `Author` entities. If you open the **Test explorer** in your IDE, you will see the following tests are generated:
 
-{{ if DB === "EF" }}
+{{ if DB == "EF" }}
 
 ![](./images/abp-suite-generated-tests-ef-core.png)
 
-{{ else if DB === "Mongo" }}
+{{ else if DB == "Mongo" }}
 
 ![](./images/abp-suite-generated-tests-mongo.png)
 
@@ -185,11 +193,11 @@ Since ABP Suite generated the test data seed contributors for each entity, you h
 
 Let's execute all tests, and see the results:
 
-{{ if DB === "EF" }}
+{{ if DB == "EF" }}
 
 ![](./images/bookstore-test-succeed-ef-core.png)
 
-{{ else if DB === "Mongo" }}
+{{ else if DB == "Mongo" }}
 
 ![](./images/bookstore-test-succeed-mongo.png)
 

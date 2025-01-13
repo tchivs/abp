@@ -36,10 +36,11 @@ On the C# side, ABP Suite adds abstract base classes for entities, application s
 
 You can write your custom code in those classes (with the `*.Extended.cs` extension) and next time when you need to re-generate the entity, your custom code will not be overridden (only the base abstract classes will be re-generated and your changes on Suite will be respected):
 
-{{ if DB === "EF" }}
+{{ if DB == "EF" }}
 
 ![](./images/suite-repository-custom-code-ef-core.png)
-{{ else if DB === "Mongo" }}
+
+{{ else if DB == "Mongo" }}
 
 ![](./images/suite-repository-custom-code-mongo.png)
 
@@ -49,7 +50,7 @@ You can write your custom code in those classes (with the `*.Extended.cs` extens
 
 On the UI side, ABP Suite provides convenient comment placeholders within pages for MVC, Blazor, and Angular UIs. These comment sections serve as hook points where you can add your custom code.
 
-{{ if UI === "MVC"}}
+{{ if UI == "MVC"}}
 
 For example, if you open the *Books/Index.cshtml* file in your IDE, you will see those placeholders like following:
 
@@ -67,7 +68,7 @@ For example, if you open the *Books/Index.cshtml* file in your IDE, you will see
 
 You can write your custom codes between the _**<suite-custom-code-block-n></suite-custom-code-block-n>**_ placeholders and you can also extend these placeholders by customizing the [ABP Suite templates](../../suite/editing-templates.md).
 
-{{ else if UI === "Angular" }}
+{{ else if UI == "Angular" }}
 
 Similar to services, there are two types of components:
 
