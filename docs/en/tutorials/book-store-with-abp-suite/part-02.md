@@ -115,22 +115,14 @@ It will take some time to complete the process. After the process is completed, 
 {{ else if UI === "Angular" }}
 ![](./images/book-store-studio-run-app-angular.png)
 {{ else if UI === "MAUIBlazor" "}}
-//TODO: maui blazor screenshot!
+![](./images/book-store-studio-run-app-mauiblazor.png)
 {{ else }}
-//TODO: Blazor screenshot!
+![](./images/book-store-studio-run-app-blazor.png)
 {{ end }}
 
 After the application is started, you can right-click and *Browse* on the application to open it in the ABP Studio's pre-integrated browser. You can see the Books page in the following figure with a single record:
 
-{{ if UI === "Angular" }}
-//TODO: angular screenshot!
-{{ else if UI === "MVC" }}
-![](./images/suite-book-pages-browser-mvc.png)
-{{ else if UI === "MAUIBlazor" "}}
-//TODO: maui blazor screenshot!
-{{ else }}
-//TODO: Blazor screenshot!
-{{ end }}
+![](./images/suite-book-pages-browser.png)
 
 On this page, you can create a new book, update an existing book, delete a book, export all records (or the filtered records) to excel, filter the records by using the advanced filter section, bulk delete multiple records and so on.
 

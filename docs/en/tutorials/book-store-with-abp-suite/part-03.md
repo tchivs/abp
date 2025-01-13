@@ -69,9 +69,9 @@ ABP Suite will generate the necessary code for you. It will take some time to co
 {{ else if UI === "Angular" }}
 ![](./images/book-store-studio-run-app-angular.png)
 {{ else if UI === "MAUIBlazor" "}}
-//TODO: maui blazor screenshot!
+![](./images/book-store-studio-run-app-mauiblazor.png)
 {{ else }}
-//TODO: Blazor screenshot!
+![](./images/book-store-studio-run-app-blazor.png)
 {{ end }}
 
 After the application is started, you can right-click and *Browse* on the application to open it in the ABP Studio's pre-integrated browser and try to add a new author:

@@ -64,7 +64,7 @@ It will take some time to complete the process. After the process is completed, 
 {{ else if UI === "Angular" }}
 ![](./images/book-store-studio-run-app-angular.png)
 {{ else if UI === "MAUIBlazor" "}}
-//TODO: maui blazor screenshot!
+![](./images/book-store-studio-run-app-mauiblazor.png)
 {{ else }}
 ![](./images/book-store-studio-run-app-blazor.png)
 {{ end }}
