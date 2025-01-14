@@ -36,7 +36,15 @@ namespace MyProject.Blazor
 > There is a BundleContributor class implementing `IBundleContributor` interface coming by default with the startup templates. So, most of the time, you don't need to add it manually.
 
 ## Bundling And Minification
-`abp bundle` command offers bundling and minification support for client-side resources(JavaScript and CSS files). `abp bundle` command reads the `appsettings.json` file inside the Blazor project and bundles the resources according to the configuration. You can find the bundle configurations inside `AbpCli.Bundle` element.
+The `abp bundle` command provides bundling and minification capabilities for your client-side resources (JavaScript and CSS files). When you run this command, it processes and bundles the resources based on configuration settings and generates optimized bundles that can be used in your application.
+
+```bash
+abp bundle
+
+# for a different ABP version than current CLI version
+abp bundle --version 9.0.3
+```
+### Bundle Configuration
 
 Here are the options that you can control inside the `appsettings.json` file.
 
