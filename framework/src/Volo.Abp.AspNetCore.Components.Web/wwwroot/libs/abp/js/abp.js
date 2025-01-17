@@ -36,6 +36,9 @@ var abp = abp || {};
 
         if (path) {
             cookieValue = cookieValue + "; path=" + path;
+        } else {
+            
+            cookieValue = cookieValue + "; path=/";
         }
 
         if (secure) {
