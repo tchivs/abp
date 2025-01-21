@@ -15,6 +15,7 @@
     "CmsKit.Ratings": "التقييمات",
     "CmsKit.Reactions": "تفاعلات",
     "CmsKit.Tags": "العلامات",
+    "CmsKit.MarkedItems": "العناصر المميزة",
     "CmsKit:0002": "المحتوى موجود بالفعل!",
     "CmsKit:0003": "الكيان {0} غير قابل للعلامة.",
     "CmsKit:Blog:0001": "slug المحدد ({Slug}) موجود بالفعل!",
@@ -28,6 +29,9 @@
     "CmsKit:MarkedItem:0001": "لا يمكن أن تمييز الكيان {EntityType}.",
     "CmsKit:MarkedItem:0002": "لم يتم العثور على تعريف لنوع الكيان '{EntityType}'.",
     "CmsKit:MarkedItem:0003": "يوجد بالفعل تعريف لنوع الكيان '{EntityType}'. يجب أن يكون لكل نوع كيان تعريف واحد فقط.",
+    "ToggleFavorite": "تفضيل/إلغاء",
+    "FavoritesFilterMessage": "يرجى تسجيل الدخول لتصفية المفضلات الخاصة بك",
+    "FilterOnFavorites": "تصفية المفضلات",
     "CmsKit:Tag:0002": "الكيان غير قابل للوسم!",
     "CommentAuthorizationExceptionMessage": "هذه التعليقات غير مسموح بها للعرض العام.",
     "CommentDeletionConfirmationMessage": "سيتم حذف هذا التعليق وجميع الردود!",
@@ -254,6 +258,7 @@
     "ChooseAnActionForBlog": "اختر إجراءً للمدونة",
     "AssignBlogPostsToOtherBlog": "تعيين مشاركات المدونة إلى مدونة أخرى",
     "SelectAnBlogToAssign": "حدد مدونة لتعيين مشاركات المدونة إليها",
-    "DeleteAllBlogPostsOfThisBlog": "حذف جميع مشاركات المدونة"
+    "DeleteAllBlogPostsOfThisBlog": "حذف جميع مشاركات المدونة",
+    "RequiredPermissionName": "اسم الإذن المطلوب",
   }
 }

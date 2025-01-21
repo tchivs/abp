@@ -231,6 +231,7 @@
     "ChooseAnActionForBlog": "选择博客的操作",
     "AssignBlogPostsToOtherBlog": "将博客文章分配给其他博客",
     "SelectAnBlogToAssign": "选择要分配的博客",
-    "DeleteAllBlogPostsOfThisBlog": "删除此博客的所有博客文章"
+    "DeleteAllBlogPostsOfThisBlog": "删除此博客的所有博客文章",
+    "RequiredPermissionName": "所需权限名称"
   }
 }

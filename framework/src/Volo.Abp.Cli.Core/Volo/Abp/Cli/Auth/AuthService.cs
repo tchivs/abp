@@ -85,7 +85,11 @@ public class AuthService : IAuthService, ITransientDependency
         }
 
         var accessToken = await AuthenticationService.GetAccessTokenAsync(configuration);
-
+        
+        if (!Directory.Exists(CliPaths.Root))
+        {
+            Directory.CreateDirectory(CliPaths.Root);                        
+        }
         File.WriteAllText(CliPaths.AccessToken, accessToken, Encoding.UTF8);
     }
 

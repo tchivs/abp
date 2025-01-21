@@ -164,7 +164,7 @@ Open the `ModularCrm` module (which is the main application) in your IDE:
 
 ![abp-studio-open-with-visual-studio-main-app](images/abp-studio-open-with-visual-studio-main-app.png)
 
-Find the `ModularCrmDbContext` class under the `ModularCrm.EntityFrameworkCore` project:
+Open the `ModularCrmDbContext` class under the `ModularCrm` project's `Data` folder:
 
 ![visual-studio-main-dbcontext](images/visual-studio-main-dbcontext.png)
 
@@ -185,10 +185,9 @@ Follow the three steps below;
 **(2)** Implement the `IProductsDbContext` by the `ModularCrmDbContext` class:
 
 ````csharp
+[ReplaceDbContext(typeof(IProductsDbContext))]
 public class ModularCrmDbContext :
     AbpDbContext<ModularCrmDbContext>,
-    ITenantManagementDbContext,
-    IIdentityDbContext,
     IProductsDbContext //NEW: IMPLEMENT THE INTERFACE
 {
     public DbSet<Product> Products { get; set; } //NEW: ADD DBSET PROPERTY
@@ -214,7 +213,7 @@ Now, we can add a new database migration. You can use Entity Framework Core's `A
 
 Ensure that the solution has built. You can right-click the `ModularCrm` (under the `main` folder) on ABP Studio *Solution Runner* and select the *Dotnet CLI* -> *Graph Build* command.
 
-Right-click the `ModularCrm.EntityFrameworkCore` package and select the *EF Core CLI* -> *Add Migration* command:
+Right-click the `ModularCrm` package and select the *EF Core CLI* -> *Add Migration* command:
 
 ![abp-studio-add-entity-framework-core-migration](images/abp-studio-add-entity-framework-core-migration.png)
 
@@ -222,7 +221,7 @@ The *Add Migration* command opens a new dialog to get a migration name:
 
 ![abp-studio-add-entity-framework-core-migration-dialog](images/abp-studio-add-entity-framework-core-migration-dialog.png)
 
-Once you click the *OK* button, a new database migration class is added to the `Migrations` folder of the `ModularCrm.EntityFrameworkCore` project:
+Once you click the *OK* button, a new database migration class is added to the `Migrations` folder of the `ModularCrm` project:
 
 ![visual-studio-new-migration-class](images/visual-studio-new-migration-class.png)
 
@@ -369,7 +368,7 @@ For this application, we don't need to create HTTP API endpoints for the product
 * You can create a regular ASP.NET Core Controller class in the `ModularCrm.Products.HttpApi` project, inject `IProductAppService` and use it to create wrapper methods. We will do this later while we create the Ordering module.
 * Alternatively, you can use the ABP's [Auto API Controllers](../../framework/api-development/auto-controllers.md) feature to expose your application services as API controllers by conventions. We will do it here.
 
-Open the `ModularCrmWebModule` class in the main application's solution (the `ModularCrm` solution), find the `PreConfigureServices` method and add the following lines inside that method:
+Open the `ModularCrmModule` class in the main application's solution (the `ModularCrm` solution), find the `PreConfigureServices` method and add the following lines inside that method:
 
 ````csharp
 PreConfigure<IMvcBuilder>(mvcBuilder =>
@@ -385,8 +384,8 @@ Then open the `ConfigureAutoApiControllers` method of the same class and add a s
 ````csharp
 Configure<AbpAspNetCoreMvcOptions>(options =>
 {
-    options.ConventionalControllers.Create(typeof(ModularCrmApplicationModule).Assembly);
-    
+    options.ConventionalControllers.Create(typeof(ModularCrmModule).Assembly);
+
     //ADD THE FOLLOWING LINE:
     options.ConventionalControllers.Create(typeof(ProductsApplicationModule).Assembly);
 });
@@ -404,7 +403,7 @@ This section will create a few example products using the [Swagger UI](../../fra
 
 Now, right-click the `ModularCrm` under the `main` folder in the Solution Explorer panel and select the *Dotnet CLI* -> *Graph Build* command. This will ensure that the product module and the main application are built and ready to run.
 
-After the build process completes, open the Solution Runner panel and click the *Play* button near the solution root. Once the `ModularCrm.Web` application runs, we can right-click it and select the *Browse* command to open the user interface.
+After the build process completes, open the Solution Runner panel and click the *Play* button near the solution root. Once the `ModularCrm` application runs, we can right-click it and select the *Browse* command to open the user interface.
 
 Once you see the user interface of the web application, type `/swagger` at the end of the URL to open the Swagger UI. If you scroll down, you should see the `Products` API:
 
@@ -486,7 +485,7 @@ Here, we simply use the `IProductAppService` to get a list of all products and a
 </abp-card>
 ````
 
-You can build the product module's .NET solution (`ModularCrm.Products`), then right-click the `ModularCrm.Web` application on ABP Studio's solution runner and select the *Build & Restart* command:
+Right-click the `ModularCrm` application on ABP Studio's solution runner and select the *Start* command:
 
 ![abp-studio-build-and-restart-application](images/abp-studio-build-and-restart-application.png)
 

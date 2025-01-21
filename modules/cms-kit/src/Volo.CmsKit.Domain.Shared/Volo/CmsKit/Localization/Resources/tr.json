@@ -222,6 +222,7 @@
     "ChooseAnActionForBlog": "Blog için bir eylem seçin",
     "AssignBlogPostsToOtherBlog": "Diğer bloglara blog yazıları atayın",
     "SelectAnBlogToAssign": "Atanacak bir blog seçin",
-    "DeleteAllBlogPostsOfThisBlog": "Bu blogun tüm blog yazılarını sil"
+    "DeleteAllBlogPostsOfThisBlog": "Bu blogun tüm blog yazılarını sil",
+    "RequiredPermissionName": "Gerekli izin adı"
   }
 }

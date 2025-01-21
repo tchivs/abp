@@ -231,6 +231,7 @@
     "ChooseAnActionForBlog": "Vyberte akci pro blog",
     "AssignBlogPostsToOtherBlog": "Přiřaďte blogové příspěvky k jinému blogu",
     "SelectAnBlogToAssign": "Vyberte blog, ke kterému chcete přiřadit blogové příspěvky",
-    "DeleteAllBlogPostsOfThisBlog": "Smazat všechny blogové příspěvky tohoto blogu"
+    "DeleteAllBlogPostsOfThisBlog": "Smazat všechny blogové příspěvky tohoto blogu",
+    "RequiredPermissionName": "Je vyžadováno oprávnění"
   }
 }

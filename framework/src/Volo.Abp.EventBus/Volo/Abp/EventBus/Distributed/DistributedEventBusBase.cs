@@ -132,7 +132,13 @@ public abstract class DistributedEventBusBase : EventBusBase, IDistributedEventB
                     Serialize(eventData),
                     Clock.Now
                 );
-                outgoingEventInfo.SetCorrelationId(CorrelationIdProvider.Get()!);
+
+                var correlationId = CorrelationIdProvider.Get();
+                if (correlationId != null)
+                {
+                    outgoingEventInfo.SetCorrelationId(correlationId);
+                }
+
                 await eventOutbox.EnqueueAsync(outgoingEventInfo);
                 return true;
             }

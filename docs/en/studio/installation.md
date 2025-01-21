@@ -8,7 +8,7 @@
 Before you begin the installation process for ABP Studio, ensure that your system meets the following pre-requirements:
 
 ### Node
-Make sure [Node.js](https://nodejs.org/en) is installed on your system. If you have not installed Node.js, you can download the `v18.19+` version from the official [Node.js website](https://nodejs.org/en/download/prebuilt-installer).
+Make sure [Node.js](https://nodejs.org/en) is installed on your system. If you have not installed Node.js, you can download the `v22+` version from the official [Node.js website](https://nodejs.org/en/download/prebuilt-installer).
 
 ### WireGuard (Optional) 
 ABP Studio needs [WireGuard](https://www.wireguard.com/) for Kubernetes operations. You can find the installation instructions for your specific operating system below:
@@ -19,7 +19,7 @@ Installation instructions for your Windows operating system are on the official 
 **For macOS:**
 Installation instructions for your macOS operating system are on the official [WireGuard website](https://www.wireguard.com/install/#macos-homebrew-and-macports-basic-cli-homebrew-userspace-go-homebrew-tools-macports-userspace-go-macports-tools).
 
-### Docker (Optional) 
+### Docker 
 ABP Studio needs [Docker](https://www.docker.com/) for [Kubernetes](https://kubernetes.io/) operations. Install Docker by following the guidelines on the official [Docker website](https://docs.docker.com/get-docker/).
 
 ## Installation

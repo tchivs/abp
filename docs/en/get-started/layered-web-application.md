@@ -13,31 +13,15 @@ In this quick start guide, you will learn how to create and run a layered (and p
 
 ## Setup your development environment
 
-First things first! Let's setup your development environment before creating the first project.
+First things first! Let's setup your development environment before creating the first project. The following tools should be installed on your development machine:
 
-### Pre-requirements
+* [Visual Studio 2022](https://visualstudio.microsoft.com/) or another IDE that supports [.NET 9.0+](https://dotnet.microsoft.com/download/dotnet) development.
+* [.NET 9.0+](https://dotnet.microsoft.com/en-us/download/dotnet){{ if UI != "Blazor" }}
+* [Node v22.11+](https://nodejs.org/)
+* [Yarn v1.22+ (not v2+)](https://classic.yarnpkg.com/en/docs/install) or npm v10+ (already installed with Node){{ end }}
+* [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
-The following tools should be installed on your development machine:
-
-* [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) (v17.3+) for Windows / [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). <sup id="a-editor">[1](#f-editor)</sup>
-* [.NET 8.0+](https://dotnet.microsoft.com/en-us/download/dotnet)
-{{ if UI != "Blazor" }}
-* [Node v18.19+](https://nodejs.org/)
-* [Yarn v1.22+ (not v2)](https://classic.yarnpkg.com/en/docs/install) <sup id="a-yarn">[2](#f-yarn)</sup> or npm v10+ (already installed with Node)
-{{ end }}
-{{ if Tiered == "Yes" }}
-* [Redis](https://redis.io/) (as the [distributed cache](../framework/fundamentals/caching.md)).
-{{ else }}
-* [Redis](https://redis.io/) (as the [distributed cache](../framework/fundamentals/caching.md)) is required if you select the Public website option.
-{{ end }}
-
-<sup id="f-editor"><b>1</b></sup> _You can use another editor instead of Visual Studio as long as it supports .NET Core and ASP.NET Core._ <sup>[↩](#a-editor)</sup>
-
-{{ if UI != "Blazor" }}
-
-<sup id="f-yarn"><b>2</b></sup> _Yarn v2 works differently and is not supported._ <sup>[↩](#a-yarn)</sup>
-
-{{ end }}
+> Check the [Pre-requirements document](pre-requirements.md) for more detailed information about these tools.
 
 ## Creating a New Solution
 
@@ -147,7 +131,7 @@ In the Solution Runner section (on the left side) you can see all the runnable a
 
 You can run all the applications or start them one by one. To start an application, either click the *Play* icon near to the application or right-click and select the *Run* -> *Start* context menu item.
 
-> For the first run, you'll need to build the application. You can achieve this by selecting *Run* -> *Build & Start* from the context menu.
+> ABP Studio builds the application by default. So, you don't need to manually build the application before running it.
 
 You can start the following application(s): 
 
@@ -229,7 +213,7 @@ You can start the following application(s):
 {{ else }}
 - `Acme.BookStore.Web`
 {{ end }}
- 
+
 Before starting the mobile application, ensure that you configure it for [react-native](../framework/ui/react-native) or [MAUI](../framework/ui/maui).
 
 ![mobile-sample](images/abp-studio-mobile-sample.gif)

@@ -14,7 +14,7 @@
 }
 ````
 
-In this part, you will build a new product management module and install it in the main CRM application.
+In this part, you will create a new product management module and install it in the main CRM application.
 
 ## Creating Solution Folders
 
@@ -32,12 +32,13 @@ Create a `main` and a `modules` folder using the *New Folder* command, then move
 
 ## Creating The Module
 
-There are two module templates provided by ABP Studio:
+There are three module templates provided by ABP Studio:
 
 * **Empty Module**: You can use that module template to build your module structure from scratch.
 * **DDD Module**: A Domain Driven Design based layered module structure.
+* **Standard Module**: A module template that is similar to the DDD module but without the domain layer.
 
-We will use the *DDD Module* template for the Product module and the *Empty Module* template later in this tutorial.
+We will use the *DDD Module* template for the Product module and the *Standard Module* template later in this tutorial.
 
 Right-click the `modules` folder on the *Solution Explorer* panel, and select the *Add* -> *New Module* -> *DDD Module* command:
 
@@ -115,7 +116,7 @@ When you click the *OK* button, ABP Studio opens the *Install Module* dialog:
 
 ![abp-studio-module-installation-dialog](images/abp-studio-module-installation-dialog.png)
 
-This dialog simplifies installing a multi-layer module to a multi-layer application. It automatically determines which package of the `ModularCrm.Products` module should be installed to which package of the main application. For example, the `ModularCrm.Products.Domain` package is installed to the `ModularCrm.Domain` package. In that way, you can use domain objects ([entities](../../framework/architecture/domain-driven-design/entities.md), [repositories](../../framework/architecture/domain-driven-design/repositories.md), ...) of the products module from the domain layer of your main application.
+This dialog simplifies installing a multi-layer module to a single-layer application. It automatically determines which package of the `ModularCrm.Products` module should be installed to which package of the main application.
 
 The default package match is good for this tutorial, so you can click the *OK* button to proceed.
 
@@ -131,7 +132,7 @@ Graph Build is a dotnet CLI command that recursively builds all the referenced d
 
 ### Run the Main Application
 
-Open the *Solution Runner* panel, click the *Play* button (near to the solution root), right-click the `ModularCrm.Web` application and select the *Browse* command. It will open the web application in the built-in browser. Then you can navigate to the *Products* page on the main menu of the application to see the Products page that is coming from the `ModularCrm.Products` module:
+Open the *Solution Runner* panel, click the *Play* button (near to the solution root), right-click the `ModularCrm` application and select the *Browse* command. It will open the web application in the built-in browser. Then you can navigate to the *Products* page on the main menu of the application to see the Products page that is coming from the `ModularCrm.Products` module:
 
 ![abp-studio-solution-runner-initial-product-page](images/abp-studio-solution-runner-initial-product-page.png)
 

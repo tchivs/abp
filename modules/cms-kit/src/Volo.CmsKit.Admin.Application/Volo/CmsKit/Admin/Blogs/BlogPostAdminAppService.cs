@@ -111,9 +111,15 @@ public class BlogPostAdminAppService : CmsKitAppServiceBase, IBlogPostAdminAppSe
     {
         var blogs = (await BlogRepository.GetListAsync()).ToDictionary(x => x.Id);
 
-        var blogPosts = await BlogPostRepository.GetListAsync(input.Filter, input.BlogId, input.AuthorId, input.TagId,
+        var blogPosts = await BlogPostRepository.GetListAsync(
+            input.Filter, 
+            input.BlogId, 
+            input.AuthorId, 
+            input.TagId,
             statusFilter: input.Status,
-            input.MaxResultCount, input.SkipCount, input.Sorting);
+            maxResultCount: input.MaxResultCount,
+            skipCount: input.SkipCount, 
+            sorting: input.Sorting);
 
         var count = await BlogPostRepository.GetCountAsync(input.Filter, input.BlogId, input.AuthorId, tagId: input.TagId);
 

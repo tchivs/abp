@@ -664,6 +664,9 @@
     "EditWinners": "Edit winners",
     "EditAttendees": "Edit attendees",
     "ExportAttendeesAsExcel": "Export attendees as Excel",
-    "DuplicateRaffle": "Duplicate raffle"
+    "DuplicateRaffle": "Duplicate raffle",
+    "Menu:RedisManagement": "Redis Management",
+    "RedisManagement": "Redis Management",
+    "Permission:RedisManagement": "Redis Management"
   }
 }

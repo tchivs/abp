@@ -4,43 +4,51 @@ This template can be used to create a **reusable [application module](../../modu
 
 ## How to Start With?
 
-You can use the [ABP CLI](../../cli) to create a new project using this startup template. Alternatively, you can generate a CLI command from the [Get Started](https://abp.io/get-started) page. CLI approach is used here.
+You can use the [ABP CLI](../../cli) or [ABP Studio](../../studio/overview.md) to create a new project using this startup template. Alternatively, you can generate a CLI command from the [Get Started](https://abp.io/get-started) page. We will use the ABP Studio for this guide.
 
-First, install the ABP CLI if you haven't installed before:
+First, install the ABP Studio if you haven't installed before. You can follow the [installation guide](../../studio/installation.md) for this.
 
-```bash
-dotnet tool install -g Volo.Abp.Studio.Cli
-```
+### Creating a New Empty Solution
 
-Then use the `abp new` command in an empty folder to create a new solution:
+Open the ABP Studio and click the `New solution` button in the welcome page or the `File > New Solution` top menu item. Select the `Empty Solution` template and click the `Next` button.
 
-```bash
-abp new-module Acme.BookStore
-```
+![New Solution](images/new-solution.png)
+
+Enter the solution name, select the solution folder and click the `Create` button.
+
+![Solution Properties](images/solution-properties.png)
 
 - `Acme.IssueManagement` is the solution name, like *YourCompany.YourProduct*. You can use single level, two-levels or three-levels naming.
 
-### Specifying the User Interface
+> To understand the terms solution, module, and package, refer to the ABP Studio [concepts](../../studio/concepts.md) document.
 
-The template comes without a user interface by default. You can use the `mvc`, `blazor`, `blazor-server`, or `angular` options to include any of these UI layers. You can also combine them. For example, you can use `mvc,angular` to include both MVC and Angular UI. To create a module without a user interface, don't specify any value.
+### Creating a New DDD Module
 
-````bash
-abp new-module Acme.IssueManagement -u mvc,angular
-````
+When you create a new solution, the solution explorer on the left side of the screen will appear empty. Right-click on the root of the solution and select `Add > New Module > DDD Module` from the context menu.
 
-#### Specifying the Database Provider
+![New Module](images/new-module.png)
 
-The template comes with the *EntityFrameworkCore* database provider by default. You can use the `ef` or `mongodb` options to include either of these providers. You can also combine them. For example, you can use `ef,mongodb` to include both EntityFrameworkCore and MongoDB.
+The `Create New Module` dialog will open. Enter the module name and click the `Next` button.
 
-````bash
-abp new-module Acme.IssueManagement -d ef,mongodb
-````
+![Create New Module](images/create-new-module.png)
+
+Now, you can select the user interface options or leave it empty to create a module without a user interface. A module can support multiple user interfaces, such as MVC, Blazor, Angular, etc., or none at all. Click the `Next` button to specify the database provider.
+
+![Select User Interface](images/select-user-interface.png)
+
+Select the database provider(s) you want to use in your module. You can choose `EntityFrameworkCore`, `MongoDB`, or both. Unlike the user interface options, you must select at least one database provider. Click the `Next` button to see the additional options.
+
+![Select Database Provider](images/select-database-provider.png)
+
+You can exclude the test projects from the module by unchecking the `Include Tests` option. Click the `Create` button to create the module.
+
+![Additional Options](images/additional-options.png)
 
 ## Solution Structure
 
 Based on the options you've specified, you will get a slightly different solution structure. If you don't specify any option, you will have a solution like shown below:
 
-![issuemanagement-module-solution](../../images/issuemanagement-module-solution.png)
+![issuemanagement-module-solution](images/issuemanagement-module-solution.png)
 
 Projects are organized as `src` and`test` folders:
 

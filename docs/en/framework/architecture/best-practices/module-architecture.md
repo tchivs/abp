@@ -1,13 +1,13 @@
 # Module Architecture Best Practices & Conventions
 
-### Solution Structure
+## Solution Structure
 
 * **Do** create a separated Visual Studio solution for every module.
 * **Do** name the solution as *CompanyName.ModuleName* (for core ABP modules, it's *Volo.Abp.ModuleName*).
 * **Do** develop the module as layered, so it has several packages (projects) those are related to each other.
   * Every package has its own module definition file and explicitly declares the dependencies for the depended packages/modules.
 
-### Layers & Packages
+## Layers & Packages
 
 The following diagram shows the packages of a well-layered module and dependencies of those packages between them:
 

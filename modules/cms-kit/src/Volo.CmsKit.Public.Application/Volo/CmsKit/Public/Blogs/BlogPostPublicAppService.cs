@@ -54,7 +54,10 @@ public class BlogPostPublicAppService : CmsKitPublicAppServiceBase, IBlogPostPub
     {
         var blog = await BlogRepository.GetBySlugAsync(blogSlug);
 
+        Guid? favoriteUserId = await GetFavoriteUserIdAsync(input.FilterOnFavorites);
+
         var blogPosts = await BlogPostRepository.GetListAsync(null, blog.Id, input.AuthorId, input.TagId,
+            favoriteUserId,
             BlogPostStatus.Published, input.MaxResultCount,
             input.SkipCount, input.Sorting);
 
@@ -99,5 +102,15 @@ public class BlogPostPublicAppService : CmsKitPublicAppServiceBase, IBlogPostPub
         var tag = await TagRepository.GetAsync(tagId);
 
         return tag.Name;
+    }
+
+    protected virtual async Task<Guid?> GetFavoriteUserIdAsync(bool? filterOnFavorites)
+    {
+        if (!filterOnFavorites.GetValueOrDefault() || !CurrentUser.IsAuthenticated)
+        {
+            return null;
+        }
+
+        return CurrentUser.GetId();
     }
 }

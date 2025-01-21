@@ -231,6 +231,7 @@
     "ChooseAnActionForBlog": "Scegli un'azione per il blog",
     "AssignBlogPostsToOtherBlog": "Assegna i post del blog ad un altro blog",
     "SelectAnBlogToAssign": "Seleziona un blog a cui assegnare i post del blog",
-    "DeleteAllBlogPostsOfThisBlog": "Elimina tutti i post del blog di questo blog"
+    "DeleteAllBlogPostsOfThisBlog": "Elimina tutti i post del blog di questo blog",
+    "RequiredPermissionName": "Nome del permesso richiesto"
   }
 }

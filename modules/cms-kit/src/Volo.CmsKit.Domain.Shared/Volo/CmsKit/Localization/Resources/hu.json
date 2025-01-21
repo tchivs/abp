@@ -231,6 +231,7 @@
     "ChooseAnActionForBlog": "Válasszon egy műveletet a bloghoz",
     "AssignBlogPostsToOtherBlog": "Blogbejegyzések hozzárendelése egy másik bloghoz",
     "SelectAnBlogToAssign": "Válasszon egy blogot a hozzárendeléshez",
-    "DeleteAllBlogPostsOfThisBlog": "Ez a művelet törli az összes blogbejegyzést ebből a blogból. Biztos vagy benne?"
+    "DeleteAllBlogPostsOfThisBlog": "Ez a művelet törli az összes blogbejegyzést ebből a blogból. Biztos vagy benne?",
+    "RequiredPermissionName": "Szükséges engedély neve"
   }
 }

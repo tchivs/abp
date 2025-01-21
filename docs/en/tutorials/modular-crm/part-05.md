@@ -28,7 +28,7 @@ Create an `Order` class to the `ModularCrm.Ordering` project (open an `Entities`
 
 ````csharp
 using System;
-using ModularCrm.Ordering.Contracts.Enums;
+using ModularCrm.Ordering.Enums;
 using Volo.Abp.Domain.Entities.Auditing;
 
 namespace ModularCrm.Ordering.Entities
@@ -156,7 +156,7 @@ public static class OrderingDbContextModelCreatingExtensions
 
 #### Configuring the Main Application
 
-Open the main application's solution in your IDE, find the `ModularCrmDbContext` class under the `ModularCrm.EntityFrameworkCore` project and follow the 3 steps below:
+Open the main application's solution in your IDE, find the `ModularCrmDbContext` class under the `ModularCrm` project's `Data` folder, and follow the 3 steps below:
 
 **(1)** Add the following attribute on top of the `ModularCrmDbContext` class:
 
@@ -171,8 +171,6 @@ The `ReplaceDbContext` attribute allows the use of the `ModularCrmDbContext` cla
 ````csharp
 public class ModularCrmDbContext :
     AbpDbContext<ModularCrmDbContext>,
-    ITenantManagementDbContext,
-    IIdentityDbContext,
     IProductsDbContext,
     IOrderingDbContext //NEW: IMPLEMENT THE INTERFACE
 {
@@ -200,7 +198,7 @@ Now, we can add a new database migration. You can use Entity Framework Core's `A
 
 Ensure that the solution has built. You can right-click the `ModularCrm` (under the `main` folder) on ABP Studio *Solution Runner* and select the *Dotnet CLI* -> *Graph Build* command.
 
-Right-click the `ModularCrm.EntityFrameworkCore` package and select the *EF Core CLI* -> *Add Migration* command:
+Right-click the `ModularCrm` package and select the *EF Core CLI* -> *Add Migration* command:
 
 ![abp-studio-add-entity-framework-core-migration](images/abp-studio-add-entity-framework-core-migration.png)
 
@@ -208,11 +206,11 @@ The *Add Migration* command opens a new dialog to get a migration name:
 
 ![abp-studio-entity-framework-core-add-migration-order](images/abp-studio-entity-framework-core-add-migration-order.png)
 
-Once you click the *OK* button, a new database migration class is added to the `Migrations` folder of the `ModularCrm.EntityFrameworkCore` project:
+Once you click the *OK* button, a new database migration class is added to the `Migrations` folder of the `ModularCrm` project:
 
 ![visual-studio-new-migration-class-2](images/visual-studio-new-migration-class-2.png)
 
-Now, you can return to ABP Studio, right-click the `ModularCrm.EntityFrameworkCore` project and select the *EF Core CLI* -> *Update Database* command:
+Now, you can return to ABP Studio, right-click the `ModularCrm` project and select the *EF Core CLI* -> *Update Database* command:
 
 ![abp-studio-entity-framework-core-update-database](images/abp-studio-entity-framework-core-update-database.png)
 
@@ -320,7 +318,7 @@ namespace ModularCrm.Ordering.Services;
 
 public class OrderAppService : OrderingAppService, IOrderAppService
 {
-    private readonly IRepository<Order> _orderRepository;
+    private readonly IRepository<Order, Guid>  _orderRepository;
 
     public OrderAppService(IRepository<Order, Guid> orderRepository)
     {
@@ -347,14 +345,14 @@ public class OrderAppService : OrderingAppService, IOrderAppService
 }
 ````
 
-Open the `ModularCrmWebModule` class in the main application's solution (the `ModularCrm` solution), find the `ConfigureAutoApiControllers` method and add the following lines inside that method:
+Open the `ModularCrmModule` class in the main application's solution (the `ModularCrm` solution), find the `ConfigureAutoApiControllers` method and add the following lines inside that method:
 
 ````csharp
 private void ConfigureAutoApiControllers()
 {
     Configure<AbpAspNetCoreMvcOptions>(options =>
     {
-        options.ConventionalControllers.Create(typeof(ModularCrmApplicationModule).Assembly);
+        options.ConventionalControllers.Create(typeof(ModularCrmModule).Assembly);
         options.ConventionalControllers.Create(typeof(ProductsApplicationModule).Assembly);
 
         //ADD THE FOLLOWING LINE:
@@ -369,7 +367,7 @@ This section will create a few example orders using the [Swagger UI](../../frame
 
 Now, right-click the `ModularCrm` under the `main` folder in the Solution Explorer panel and select the *Dotnet CLI* -> *Graph Build* command. This will ensure that the order module and the main application are built and ready to run.
 
-After the build process completes, open the Solution Runner panel and click the *Play* button near the solution root. Once the `ModularCrm.Web` application runs, we can right-click it and select the *Browse* command to open the user interface.
+After the build process completes, open the Solution Runner panel and click the *Play* button near the solution root. Once the `ModularCrm` application runs, we can right-click it and select the *Browse* command to open the user interface.
 
 Once you see the user interface of the web application, type `/swagger` at the end of the URL to open the Swagger UI. If you scroll down, you should see the `Orders` API:
 
@@ -487,11 +485,11 @@ public class OrderingMenuContributor : IMenuContributor
 
 ### Building the Application
 
-Now, we will run the application to see the result. Please stop the application if it is already running. Then open the *Solution Runner* panel, right-click the `ModularCrm.Web` application, and select the *Build* -> *Graph Build* command:
+Now, we will run the application to see the result. Please stop the application if it is already running. Then open the *Solution Runner* panel, right-click the `ModularCrm` application, and select the *Build* -> *Graph Build* command:
 
 ![abp-studio-solution-runner-graph-build](images/abp-studio-solution-runner-graph-build.png)
 
-We've performed a graph build since we've made a change on a module, and more than building the main application is needed. *Graph Build* command also builds the depended modules if necessary. Alternatively, you could build the Ordering module first (on ABP Studio or your IDE), then right-click the `ModularCrm.Web` application and select the *Run* -> *Build & Start*. This approach can be faster if you have too many modules and you make a change in one of the modules. Now you can run the application by right-clicking the `ModularCrm.Web` application and selecting the *Run* -> *Start* command.
+We've performed a graph build since we've made a change on a module, and more than building the main application is needed. *Graph Build* command also builds the depended modules if necessary. Alternatively, you could build the Ordering module first (on ABP Studio or your IDE). This approach can be faster if you have too many modules and you make a change in one of the modules. Now you can run the application by right-clicking the `ModularCrm` application and selecting the *Start* command.
 
 ![abp-studio-browser-orders-menu-item](images/abp-studio-browser-orders-menu-item.png)
 

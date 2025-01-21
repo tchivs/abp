@@ -1,6 +1,6 @@
 # ABP Penetration Test Report
 
-The ABP Commercial MVC `v8.3.0` application template has been tested against security vulnerabilities by the [OWASP ZAP v2.14.0](https://www.zaproxy.org/) tool. The demo web application was started on the `https://localhost:44349` address. The below alerts have been reported by the pentest tool. These alerts are sorted by the risk level as high, medium, and low. The informational alerts are not mentioned in this document. 
+The ABP Commercial MVC `v9.0.0` application template has been tested against security vulnerabilities by the [OWASP ZAP v2.14.0](https://www.zaproxy.org/) tool. The demo web application was started on the `https://localhost:44349` address. The below alerts have been reported by the pentest tool. These alerts are sorted by the risk level as high, medium, and low. The informational alerts are not mentioned in this document. 
 
 Many of these alerts are **false-positive**, meaning the vulnerability scanner detected these issues, but they are not exploitable. It's clearly explained for each false-positive alert why this alert is a false-positive. 
 
@@ -10,14 +10,14 @@ In the next sections, you will find the affected URLs, attack parameters (reques
 
 There are high _(red flag)_, medium _(orange flag)_, low _(yellow flag)_, and informational _(blue flag)_ alerts. 
 
-![penetration-test-8.3.0](../images/pen-test-alert-list-8.3.png)
+![penetration-test-9.0.0](../images/pen-test-alert-list-9.0.png)
 
 > The informational alerts are not mentioned in this document. These alerts are not raising any risks on your application and they are optional.
 
 ### Path Traversal [Risk: High] - False Positive
 
-- *[GET] - https://localhost:44349/api/audit-logging/audit-logs?startTime=&endTime=&url=&userName=&applicationName=&clientIpAddress=&correlationId=&httpMethod=audit-logs&httpStatusCode=&maxExecutionDuration=&minExecutionDuration=&hasException=true&sorting=executionTime+desc&skipCount=0&maxResultCount=10* (attack: **httpMethod=audit-logs**)
 - *[POST] - https://localhost:44349/Account/Login* (attack: **\Login**)
+- *[POST] - https://localhost:44349/Account/LinkLogin* (attack: **\LinkLogin**)
 - *[POST] - https://localhost:44349/Account/Register* (attack: **\Register**)
 - *[POST] - https://localhost:44349/Account/SecurityLogs* (attack: **\SecurityLogs**)
 - *[POST] - https://localhost:44349/Identity/SecurityLogs* (attack: **\SecurityLogs**)
@@ -28,19 +28,15 @@ The Path Traversal attack technique allows an attacker access to files, director
 
 **Solution**:
 
-This is a **false-positive** alert since ABP does all related checks for this kind of attack on the backend side for these endpoints.
+This is a **false-positive** alert since ABP does all related checks for this kind of attacks on the backend side for these endpoints.
 
 ### SQL Injection [Risk: High] - False Positive
 
 * *[POST] — https://localhost:44349/Account/Login* (attack: **1q2w3E* AND 1=1 --**)
-* *[POST] — https://localhost:44349/AuditLogs* (attack: **GET' AND '1'='1' --**)
-* *[POST] — https://localhost:44349/Identity/SecurityLogs* (attack: **admin' AND '1'='1**)
-* *[POST] — https://localhost:44349/api/account/verify-authenticator-code* (attack: **AND '1'='1**)
-* *[POST] — https://localhost:44349/Identity/ClaimTypes/CreateModal* (attack: **aaaa AND '1'='1**)
+* *[POST] — https://localhost:44349/Account/ImpersonateUser* (attack: **CfDJ8Pyqeg0vtHtJpnK-9eLaft7-JxLJfJ6WHKPOdBZVxz14BDo061qpJ2NLplgAn2Hw16ec0IR38_wWAUkJGxP8hL6PcLfH0bh-ATNTspWyWYTGGbiH-zeKWiS5vWX-br2BA1hE7Dc45eWGUZNcVc_vm2s AND 1=1 --**)
+* *[POST] — https://localhost:44349/Abp/MultiTenancy/TenantSwitchModal* (attack: **CfDJ8Pyqeg0vtHtJpnK-9eLaft7-JxLJfJ6WHKPOdBZVxz14BDo061qpJ2NLplgAn2Hw16ec0IR38_wWAUkJGxP8hL6PcLfH0bh-ATNTspWyWYTGGbiH-zeKWiS5vWX-br2BA1hE7Dc45eWGUZNcVc_vm2s AND 1=1 --**)
 * *[POST] — https://localhost:44349/Identity/OrganizationUnits/\** (attack: **6f4cd0ab-f4eb-7ce0-8b26-3a138af1840d" AND '1'='1**) (also, several other URLs...)
-* *[POST] — https://localhost:44349/Identity/ClaimTypes/EditModal* (attack: **aaaa AND '1'='1**)
-* *[POST] — https://localhost:44349/LanguageManagement/Texts* (attack: **true" AND "1"="1" --**)
-* *[POST] — https://localhost:44349/Account/Manage?CurrentPassword=ZAP%27+AND+%271%27%3D%271%27+--+&NewPassword=ZAP&NewPasswordConfirm=ZAP*
+* *[POST] — https://localhost:44349/Identity/ClaimTypes/CreateModal* (attack: **aaaad AND '1'='1**)
 
 **Description**:
 
@@ -95,11 +91,17 @@ There are only one URL that is reported as exposing error messages. This is a **
 ### Content Security Policy (CSP) Header Not Set [Risk: Medium] — Positive (Fixed)
 
 - *[GET] — https://localhost:44349*
+- *[GET] — https://localhost:44349/AuditLogs*
+- *[GET] — https://localhost:44349/CookiePolicy*
+- *[GET] — https://localhost:44349/Gdpr/PersonalData*
+- *[GET] — https://localhost:44349/Identity/ClaimTypes/{0}* (create & edit modal URLs - also there are other modal related URLs...)
 - *[GET] — https://localhost:44349/AbpPermissionManagement/PermissionManagementModal?providerName=R&providerKey=role&providerKeyDisplayName=role*
 - *[GET] — https://localhost:44349/Abp/MultiTenancy/TenantSwitchModal*
 - *[GET] — https://localhost:44349/Account/AuthorityDelegation/AuthorityDelegationModal*
 - *[GET] — https://localhost:44349/Account/AuthorityDelegation/DelegateNewUserModal*
 - *[GET] — https://localhost:44349/Account/ForgotPassword _(other several account URLS)_* 
+- *[GET] — https://localhost:44349/Account/ExternalLogins _(other several account URLS)_* 
+- *[GET] — https://localhost:44349/Account/SecurityLogs _(other several account URLS)_* 
 - *[GET] — https://localhost:44349/Account/Login _(other several account URLS)_*
 - *[GET] — https://localhost:44349/Account/Register _(other several account URLS)_*
 - *[GET] — https://localhost:44349/Account/Manage _(other several account URLS)_*
@@ -143,12 +145,13 @@ The first affected URL is a **false-positive** alert since it's already fixed an
 
 The second URL is also a **false-positive** alert because there is no bad character string in the response. 
 
-> **Note**: However, it might be possible if you had any sensitive localization key-value pair in your localization entries, because this endpoint returns all localization values to be able to be used in the application. Therefore, keep that in mind while defining new localization entries.
+> **Note**: However, it might be possible if you had any sensitive localization key-value pair in your localization entries, because this endpoint returns all localization values to be able to be used in the application. Therefore, keep that in mind while defining new localization entries. Pass the critical values in your code while using the localization entry as a parameter.
 
 ### XSLT Injection [Risk: Medium] - False Positive
 
 - *[GET] — https://localhost:44349/Abp/Languages/Switch?culture=%3Cxsl%3Avalue-of+select%3D%22system-property%28%27xsl%3Avendor%27%29%22%2F%3E&returnUrl=%2F&uiCulture=ar*
 - *[POST] — https://localhost:44349/Account/Login _(same URL with different parameters...)_*
+- *[POST] — https://localhost:44349/Account/ImpersonateUser _(same URL with different parameters...)_*
 - *[POST] — https://localhost:44349/Account/Register _(same URL with different parameters...)_*
 - *[POST] — https://localhost:44349/Account/Manage _(same URL with different parameters...)_*
 - *[POST] — https://localhost:44349/Account/ForgotPassword _(same URL with different parameters...)_*
@@ -161,13 +164,14 @@ Injection using XSL transformations may be possible and may allow an attacker to
 
 **Explanation**: 
 
-This is a **false-positive** alert. v8.3.0 uses .NET 8 and the XSLT transformation is not possible on .NET5 or higher.
+This is a **false-positive** alert. v9.0 uses .NET 9 and the XSLT transformation is not possible on .NET5 or higher.
 
 ### Application Error Disclosure [Risk: Low] — False Positive
 
+- *[GET] — https://localhost:44349/Abp/Languages/Switch*  
 - *[POST] — https://localhost:44349/Account/ImpersonateUser*  
-- *[POST] — https://localhost:44349/Saas/Host/Editions*  
-- *[POST] — https://localhost:44349/Saas/Host/Tenants*  
+- *[GET] — https://localhost:44349/Account/ExternalLogins*  
+- *[GET] — https://localhost:44349/Account/Logout*  
 
 **Description:** 
 
@@ -304,6 +308,7 @@ This vulnerability was reported as a positive alert because the application ran 
 ### Timestamp Disclosure - Unix [Risk: Low] - False Positive
 
 - *[GET] — https://localhost:44349/libs/zxcvbn/zxcvbn.js?=*
+- *[GET] — https://localhost:44349/libs/sweetalert2/sweetalert2.all.min.js?=*
 
 **Description**: 
 
@@ -319,8 +324,9 @@ This vulnerability was reported as a positive alert, because ABP uses the [zxcvb
 
 ### X-Content-Type-Options Header Missing [Risk: Low] - Positive (Fixed)
 
-- *[GET] — https://localhost:44349/client-proxies/account-proxy.js?_v=638550091940000000 (and other client-proxies related URLs)*
+- *[GET] — https://localhost:44349/client-proxies/account-proxy.js?_v=638550091940000000 (and other client-proxies related URLs...)*
 - *[GET] — https://localhost:44349/favicon.svg*
+- *[GET] —    https://localhost:44349/images/getting-started/bg-01.png* (and other image URLs...)
 - *[GET] — https://localhost:44349/global-styles.css?_v=638556076064360335*
 - *[GET] — https://localhost:44349/libs/@fortawesome/fontawesome-free/css/all.css?_v=%5CWEB-INF%5Cweb.xml (other several URLs...)*
 - other URLs...
@@ -340,11 +346,3 @@ If possible, ensure that the end user uses a standards-compliant and modern web 
 The `X-Content-Type-Options` header allows you to avoid MIME type sniffing by saying that the MIME types are deliberately configured. This headeer is not strictly required, but it is highly recommended for security reasons. While modern browsers have improved security features, you can still set this header for ensuring the security of web applications.
 
 You can add the [ABP's Security Header Middleware](../framework/ui/mvc-razor-pages/security-headers.md#security-headers-middleware) into the request pipeline to set the `X-Content-Type-Options` as *no-sniff*. Also, this middleware adds other pre-defined security headers to your application, including `X-XSS-Protection`, `X-Frame-Options` and `Content-Security-Policy` (if it's enabled). Read [Security Headers](../framework/ui/mvc-razor-pages/security-headers.md) documentation for more info.
-
-## Other Alerts (Fixed)
-
-The following alerts were reported by the community or our customers in v8.2 and fixed:
-
-* https://github.com/abpframework/abp/issues/19576
-* https://github.com/abpframework/abp/issues/19588
-* https://github.com/abpframework/abp/issues/19589

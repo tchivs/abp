@@ -191,7 +191,9 @@ public class AuditingInterceptor : AbpInterceptor, ITransientDependency
         }
 
         if (!options.IsEnabledForGetRequests &&
-            invocation.Method.Name.StartsWith("Get", StringComparison.OrdinalIgnoreCase))
+            (string.Equals(auditLogInfo.HttpMethod, "Get", StringComparison.OrdinalIgnoreCase) ||
+             string.Equals(auditLogInfo.HttpMethod, "Head", StringComparison.OrdinalIgnoreCase) ||
+             invocation.Method.Name.StartsWith("Get", StringComparison.OrdinalIgnoreCase)))
         {
             return false;
         }

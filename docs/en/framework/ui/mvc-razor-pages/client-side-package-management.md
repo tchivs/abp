@@ -41,7 +41,7 @@ After depending on a NPM package, all you should do is to run the **yarn** comma
 yarn
 ```
 
-Alternatively, you can use `npm install` but [Yarn](https://classic.yarnpkg.com/) is suggested as mentioned before.
+Alternatively, you can use `npm install` but [Yarn v1.22+ (not v2)](https://classic.yarnpkg.com/en/docs/install) is suggested as mentioned before.
 
 #### Package Contribution
 

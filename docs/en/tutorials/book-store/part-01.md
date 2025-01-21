@@ -2,7 +2,7 @@
 ````json
 //[doc-params]
 {
-    "UI": ["MVC","Blazor","BlazorServer", "BlazorWebApp","NG"],
+    "UI": ["MVC","Blazor","BlazorServer", "BlazorWebApp","NG","MAUIBlazor"],
     "DB": ["EF","Mongo"]
 }
 ````
@@ -34,7 +34,7 @@ For such cases, run the `abp install-libs` command on the root directory of your
 abp install-libs
 ```
 
-> We suggest you install [Yarn](https://classic.yarnpkg.com/) to prevent possible package inconsistencies, if you haven't installed it yet.
+> We suggest you install [Yarn v1.22+ (not v2)](https://classic.yarnpkg.com/en/docs/install) to prevent possible package inconsistencies, if you haven't installed it yet.
 
 {{if UI=="Blazor" || UI=="BlazorWebApp"}}
 

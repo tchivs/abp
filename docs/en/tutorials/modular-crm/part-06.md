@@ -162,7 +162,7 @@ namespace ModularCrm.Ordering.Services;
 
 public class OrderAppService : ApplicationService, IOrderAppService
 {
-    private readonly IRepository<Order> _orderRepository;
+    private readonly IRepository<Order, Guid>  _orderRepository;
     private readonly IProductIntegrationService _productIntegrationService;
 
     public OrderAppService(

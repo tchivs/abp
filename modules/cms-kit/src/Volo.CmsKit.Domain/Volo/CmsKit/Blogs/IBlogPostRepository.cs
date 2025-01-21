@@ -14,6 +14,7 @@ public interface IBlogPostRepository : IBasicRepository<BlogPost, Guid>
         Guid? blogId = null,
         Guid? authorId = null,
         Guid? tagId = null,
+        Guid? favoriteUserId = null,
         BlogPostStatus? statusFilter = null,
         CancellationToken cancellationToken = default);
 
@@ -22,6 +23,7 @@ public interface IBlogPostRepository : IBasicRepository<BlogPost, Guid>
         Guid? blogId = null,
         Guid? authorId = null,
         Guid? tagId = null,
+        Guid? favoriteUserId = null,
         BlogPostStatus? statusFilter = null,
         int maxResultCount = int.MaxValue,
         int skipCount = 0,

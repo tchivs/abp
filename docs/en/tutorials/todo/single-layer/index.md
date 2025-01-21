@@ -48,8 +48,8 @@ This documentation has a video tutorial on **YouTube**!! You can watch it here:
 
 ## Pre-Requirements
 
-* An IDE (e.g. [Visual Studio](https://visualstudio.microsoft.com/vs/)) that supports [.NET 8.0+](https://dotnet.microsoft.com/download/dotnet) development.
-* [Node v18.19+](https://nodejs.org/)
+* An IDE (e.g. [Visual Studio](https://visualstudio.microsoft.com/vs/)) that supports [.NET 9.0+](https://dotnet.microsoft.com/download/dotnet) development.
+* [Node v20.11+](https://nodejs.org/)
 
 {{if DB=="Mongo"}}
 
@@ -113,7 +113,7 @@ Run the `abp install-libs` command on the root directory of your solution to ins
 abp install-libs
 ```
 
-> We suggest you install [Yarn](https://classic.yarnpkg.com/) to prevent possible package inconsistencies, if you haven't installed it yet.
+> We suggest you install [Yarn v1.22+ (not v2)](https://classic.yarnpkg.com/en/docs/install) to prevent possible package inconsistencies, if you haven't installed it yet.
 
 {{if UI=="Blazor" || UI=="BlazorServer"}}
 

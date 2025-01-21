@@ -231,6 +231,7 @@
     "ChooseAnActionForBlog": "Alegeţi o acţiune pentru blog",
     "AssignBlogPostsToOtherBlog": "Atribuiţi postările de blog la alt blog",
     "SelectAnBlogToAssign": "Selectaţi un blog pentru a atribui postările de blog",
-    "DeleteAllBlogPostsOfThisBlog": "Ştergeţi toate postările de blog ale acestui blog"
+    "DeleteAllBlogPostsOfThisBlog": "Ştergeţi toate postările de blog ale acestui blog",
+    "RequiredPermissionName": "Numele permisiunii necesare"
   }
 }

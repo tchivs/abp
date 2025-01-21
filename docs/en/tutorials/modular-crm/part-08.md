@@ -43,7 +43,7 @@ We will define the `IOrderReportingAppService` interface in the `ModularCrm.Appl
 
 As the first step, we should reference the `ModularCrm.Ordering.Contracts` package (of the `ModularCrm.Ordering` module) since we will reuse the `OrderState` enum defined in that package.
 
-Open the ABP Studio's *Solution Explorer* panel, right-click the `ModularCrm.Application.Contracts` package and select the *Add Package Reference* command:
+Open the ABP Studio's *Solution Explorer* panel, right-click the `ModularCrm` package and select the *Add Package Reference* command:
 
 ![abp-studio-add-package-reference-5](images/abp-studio-add-package-reference-5.png)
 
@@ -55,7 +55,7 @@ The package reference has been added, and we can now use the types in the `Modul
 
 #### Defining the `IOrderReportingAppService` Interface
 
-Open the main `ModularCrm` .NET solution in your IDE, find the `ModularCrm.Application.Contracts` project, create an `Orders` folder and add an `IOrderReportingAppService` interface. Here is the definition of that interface:
+Open the main `ModularCrm` .NET solution in your IDE, create an `Orders` folder under the `Services` folder and add an `IOrderReportingAppService` interface. Here is the definition of that interface:
 
 ````csharp
 using System.Collections.Generic;
@@ -71,7 +71,7 @@ namespace ModularCrm.Orders
 }
 ````
 
-We have a single method, `GetLatestOrders`, that will return a list of the latest orders. We should also define the `OrderReportDto` class that that method returns. Create the following class in the same `Orders` folder:
+We have a single method, `GetLatestOrders`, that will return a list of the latest orders. We should also define the `OrderReportDto` class that that method returns. Create the `Orders` folder under the `Services/Dtos` folder and create a class named `OrderReportDto`.
 
 ````csharp
 using System;
@@ -93,7 +93,7 @@ namespace ModularCrm.Orders
 }
 ````
 
-`OrderReportDto` contains data from both the `Order` and  `Product` entities. We could use the `OrderState` since we have a reference to the package that defines that enum.
+`OrderReportDto` contains data from both the `Order` and `Product` entities. We could use the `OrderState` since we have a reference to the package that defines that enum.
 
 After adding these files, the final folder structure should be like this:
 
@@ -101,9 +101,7 @@ After adding these files, the final folder structure should be like this:
 
 ### Implementing the `OrderReportingAppService` Class
 
-Create an `Orders` folder inside the `ModularCrm.Application` project and add a class named `OrderReportingAppService` inside it. The final folder structure should be like this:
-
-![visual-studio-order-reporting-app-service-impl](images/visual-studio-order-reporting-app-service-impl.png)
+Create a class named `OrderReportingAppService` under the `Services/Orders` folder.
 
 Open the `OrderReportingAppService.cs` file and change its content by the following code block:
 
@@ -176,7 +174,7 @@ Open the ABP Studio UI, stop the application if it is running, build and run it 
 
 Here, find the `OrderReporting` API and execute it as shown above. You should get the order objects with product names.
 
-Alternatively, you can visit the `/api/app/order-reporting/latest-orders` URL to directly execute the HTTP API on the browser (you should write the full URL, like `https://localhost:44358/api/app/order-reporting/latest-orders` - port can be different for your case)
+Alternatively, you can visit the `/api/app/order-reporting/latest-orders` URL to directly execute the HTTP API on the browser (you should write the full URL, like `https://localhost:44303/api/app/order-reporting/latest-orders` - port can be different for your case)
 
 ## Summary
 
@@ -190,7 +188,7 @@ Now, you know the fundamental principles and mechanics of building sophisticated
 
 ## Download the Source Code
 
-You can download the completed sample solution [here](https://github.com/abpframework/abp-samples/tree/master/ModularCRM).
+You can download the completed sample solution [here](https://github.com/abpframework/abp-samples/tree/master/ModularCrm).
 
 ## See Also
 

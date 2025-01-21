@@ -42,7 +42,10 @@ public partial class SettingManagement
         SettingComponentCreationContext.Normalize();
         SettingItemRenders.Clear();
 
-        SelectedGroup = GetNormalizedString(SettingComponentCreationContext.Groups.First().Id);
+        if (SettingComponentCreationContext.Groups.Any())
+        {
+            SelectedGroup = GetNormalizedString(SettingComponentCreationContext.Groups.First().Id);
+        }
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

@@ -161,8 +161,16 @@ namespace FeaturesDemo
         {
             var myGroup = context.AddGroup("MyApp");
 
-            myGroup.AddFeature("MyApp.PdfReporting", defaultValue: "false");
-            myGroup.AddFeature("MyApp.MaxProductCount", defaultValue: "10");
+            myGroup.AddFeature(
+                "MyApp.PdfReporting", 
+                defaultValue: "false"
+            );
+            
+            myGroup.AddFeature(
+                "MyApp.MaxProductCount",
+                defaultValue: "10",
+                valueType: new FreeTextStringValueType(new NumericValueValidator())
+            );
         }
     }
 }

@@ -23,6 +23,14 @@ public class AbpSecurityHeadersMiddleware : AbpMiddlewareBase, ITransientDepende
 
     public async override Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
+        var endpoint = context.GetEndpoint();
+
+        if (endpoint?.Metadata.GetMetadata<IgnoreAbpSecurityHeaderAttribute>() != null)
+        {
+            await next.Invoke(context);
+            return;
+        }
+
         /*X-Content-Type-Options header tells the browser to not try and “guess” what a mimetype of a resource might be, and to just take what mimetype the server has returned as fact.*/
         AddHeader(context, "X-Content-Type-Options", "nosniff");
 
@@ -34,14 +42,6 @@ public class AbpSecurityHeadersMiddleware : AbpMiddlewareBase, ITransientDepende
 
         var requestAcceptTypeHtml = context.Request.Headers["Accept"].Any(x =>
             x!.Contains("text/html") || x.Contains("*/*") || x.Contains("application/xhtml+xml"));
-
-        var endpoint = context.GetEndpoint();
-
-        if (endpoint?.Metadata.GetMetadata<IgnoreAbpSecurityHeaderAttribute>() != null)
-        {
-            await next.Invoke(context);
-            return;
-        }
 
         if (!requestAcceptTypeHtml
             || !Options.Value.UseContentSecurityPolicyHeader

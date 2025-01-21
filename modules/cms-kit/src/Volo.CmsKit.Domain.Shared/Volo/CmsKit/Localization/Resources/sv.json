@@ -258,6 +258,7 @@
     "ChooseAnActionForBlog": "Välj en åtgärd för bloggen",
     "AssignBlogPostsToOtherBlog": "Tilldela blogginlägg till en annan blogg",
     "SelectAnBlogToAssign": "Välj en blogg att tilldela",
-    "DeleteAllBlogPostsOfThisBlog": "Radera alla blogginlägg i denna blogg"
+    "DeleteAllBlogPostsOfThisBlog": "Radera alla blogginlägg i denna blogg",
+    "RequiredPermissionName": "Nödvändigt behörighetsnamn"
   }
 }

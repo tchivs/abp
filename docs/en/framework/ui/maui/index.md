@@ -40,6 +40,9 @@ Open a command line terminal and run the `adb reverse` command to expose a port 
 > You should replace "44305" with the real port.
 > You should run the command after starting the emulator.
 
+> If you don't have a separate installation of Android Debug Bridge, you can open it from **Visual Studio** by following toolbar menu `Tools` > `Android` > `Android Adb Command Prompt`. Android emulator has to be running for this operation.
+
+
 ### iOS
 
 The iOS simulator uses the host machine network. Therefore, applications running in the simulator can connect to web services running on your local machine via the machines IP address or via the localhost hostname. For example, given a local secure web service that exposes a GET operation via the /api/todoitems/ relative URI, an application running on the iOS simulator can consume the operation by sending a GET request to https://localhost:<port>/api/todoitems/.

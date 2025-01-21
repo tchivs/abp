@@ -55,8 +55,9 @@ public partial class PermissionManagementModal
 
             _grantedPermissionCount = 0;
             _notGrantedPermissionCount = 0;
+            Task.Run(()=>OnPermissionGroupSearchTextChangedAsync(null));
 
-            foreach (var permission in _groups.SelectMany(x => x.Permissions))
+            foreach (var permission in _allGroups.SelectMany(x => x.Permissions))
             {
                 if (!IsDisabledPermission(permission))
                 {
@@ -154,7 +155,7 @@ public partial class PermissionManagementModal
 
             var updateDto = new UpdatePermissionsDto
             {
-                Permissions = _groups
+                Permissions = _allGroups
                     .SelectMany(g => g.Permissions)
                     .Select(p => new UpdatePermissionDto { IsGranted = p.IsGranted, Name = p.Name })
                     .ToArray()

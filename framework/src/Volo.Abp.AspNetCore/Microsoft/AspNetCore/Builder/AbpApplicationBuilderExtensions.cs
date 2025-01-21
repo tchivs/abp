@@ -15,6 +15,7 @@ using Volo.Abp.AspNetCore.Auditing;
 using Volo.Abp.AspNetCore.ExceptionHandling;
 using Volo.Abp.AspNetCore.Security;
 using Volo.Abp.AspNetCore.Security.Claims;
+using Volo.Abp.AspNetCore.StaticFiles;
 using Volo.Abp.AspNetCore.Tracing;
 using Volo.Abp.AspNetCore.Uow;
 using Volo.Abp.AspNetCore.VirtualFileSystem;
@@ -127,6 +128,38 @@ public static class AbpApplicationBuilderExtensions
     }
 
     /// <summary>
+    /// Configures the application to serve static files that match the specified filename patterns with the WebRootFileProvider of the application.
+    /// </summary>
+    /// <param name="app">The <see cref="IApplicationBuilder"/> used to configure the application pipeline.</param>
+    /// <param name="includeFileNamePatterns">The file name patterns to include when serving static files (e.g., "appsettings*.json").
+    /// Supports glob patterns. See <see href="https://learn.microsoft.com/en-us/dotnet/core/extensions/file-globbing">Glob patterns documentation</see>.
+    /// </param>
+    /// <returns>The <see cref="IApplicationBuilder"/> instance.</returns>
+    public static IApplicationBuilder UseStaticFilesForPatterns(this IApplicationBuilder app, params string[] includeFileNamePatterns)
+    {
+        return UseStaticFilesForPatterns(app, includeFileNamePatterns, app.ApplicationServices.GetRequiredService<IWebHostEnvironment>().WebRootFileProvider);
+    }
+
+    /// <summary>
+    /// Configures the application to serve static files that match the specified filename patterns with the specified file provider.
+    /// </summary>
+    /// <param name="app">The <see cref="IApplicationBuilder"/> used to configure the application pipeline.</param>
+    /// <param name="includeFileNamePatterns">The file name patterns to include when serving static files (e.g., "appsettings*.json").
+    /// Supports glob patterns. See <see href="https://learn.microsoft.com/en-us/dotnet/core/extensions/file-globbing">Glob patterns documentation</see>.
+    /// </param>
+    /// <param name="fileProvider">The <see cref="IFileProvider"/> </param>
+    /// <returns>The <see cref="IApplicationBuilder"/> instance.</returns>
+    public static IApplicationBuilder UseStaticFilesForPatterns(this IApplicationBuilder app, string[] includeFileNamePatterns, IFileProvider fileProvider)
+    {
+        app.UseStaticFiles(new StaticFileOptions
+        {
+            FileProvider = new AbpStaticFileProvider(includeFileNamePatterns, fileProvider)
+        });
+
+        return app;
+    }
+
+    /// <summary>
     /// MapAbpStaticAssets is used to serve the files from the abp virtual file system embedded resources(js/css) and call the MapStaticAssets.
     /// </summary>
     public static StaticAssetsEndpointConventionBuilder MapAbpStaticAssets(this WebApplication app, string? staticAssetsManifestPath = null)
@@ -144,13 +177,29 @@ public static class AbpApplicationBuilderExtensions
             throw new AbpException("The app(IApplicationBuilder) is not an IEndpointRouteBuilder.");
         }
 
-        app.UseVirtualStaticFiles();
+        var environment = endpoints.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
+        if (environment.IsDevelopment())
+        {
+            // MapStaticAssets in development mode will have a performance issue if there are many static files.
+            // https://github.com/dotnet/aspnetcore/issues/59673
+            app.UseStaticFiles();
+
+            // Volo.Abp.AspNetCore.staticwebassets.endpoints.json is an empty file. Just compatible with the return type of MapAbpStaticAssets.
+            var tempStaticAssetsManifestPath = Path.Combine(AppContext.BaseDirectory, "Volo.Abp.AspNetCore.staticwebassets.endpoints.json");
+            if (!File.Exists(tempStaticAssetsManifestPath))
+            {
+                File.WriteAllText(tempStaticAssetsManifestPath, "{\"Version\":1,\"ManifestType\":\"Build\",\"Endpoints\":[]}");
+            }
+            return endpoints.MapStaticAssets(tempStaticAssetsManifestPath);
+        }
 
         var options = app.ApplicationServices.GetRequiredService<IOptions<AbpAspNetCoreContentOptions>>().Value;
         foreach (var folder in options.AllowedExtraWebContentFolders)
         {
             app.UseVirtualStaticFiles(folder);
         }
+
+        app.UseVirtualStaticFiles();
 
         return endpoints.MapStaticAssets(staticAssetsManifestPath);
     }

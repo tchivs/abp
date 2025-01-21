@@ -22,7 +22,6 @@
 
     <ItemGroup>
         <PackageReference Include="Devart.Data.Oracle.EFCore" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
     </ItemGroup>
 
 </Project>

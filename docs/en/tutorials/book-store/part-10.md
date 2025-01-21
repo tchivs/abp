@@ -2,7 +2,7 @@
 ````json
 //[doc-params]
 {
-    "UI": ["MVC","Blazor","BlazorServer","BlazorWebApp","NG"],
+    "UI": ["MVC","Blazor","BlazorServer","BlazorWebApp","NG", "MAUIBlazor"],
     "DB": ["EF","Mongo"]
 }
 ````
@@ -105,7 +105,7 @@ migrationBuilder.AddForeignKey(
 * Creates an index on the `AuthorId` field.
 * Declares the foreign key to the `AppAuthors` table.
 
-> If you are using Visual Studio, you may want to use `Add-Migration Added_AuthorId_To_Book -c BookStoreDbContext` and `Update-Database -Context BookStoreDbContext` commands in the *Package Manager Console (PMC)*. In this case, ensure that {{if UI=="MVC"}}`Acme.BookStore.Web`{{else if UI=="BlazorServer"}}`Acme.BookStore.Blazor`{{else if UI=="Blazor" || UI=="NG"}}`Acme.BookStore.HttpApi.Host`{{end}} is the startup project and `Acme.BookStore.EntityFrameworkCore` is the *Default Project* in PMC.
+> If you are using Visual Studio, you may want to use `Add-Migration Added_AuthorId_To_Book -c BookStoreDbContext` and `Update-Database -Context BookStoreDbContext` commands in the *Package Manager Console (PMC)*. In this case, ensure that {{if UI=="MVC"}}`Acme.BookStore.Web`{{else if UI=="BlazorServer" || UI=="BlazorWebApp"}}`Acme.BookStore.Blazor`{{else if UI=="Blazor" || UI=="NG" || UI=="MAUIBlazor"}}`Acme.BookStore.HttpApi.Host`{{end}} is the startup project and `Acme.BookStore.EntityFrameworkCore` is the *Default Project* in PMC.
 
 {{end}}
 
@@ -1071,11 +1071,11 @@ That's all. Just run the application and try to create or edit an author.
 
 {{end}}
 
-{{if UI == "Blazor" || UI == "BlazorServer" || UI == "BlazorWebApp" }}
+{{if UI == "Blazor" || UI == "BlazorServer" || UI == "BlazorWebApp" || UI == "MAUIBlazor" }}
 
 ### The Book List
 
-It is very easy to show the *Author Name* in the book list. Open the `/Pages/Books.razor` file in the {{ if UI == "BlazorServer" }}`Acme.BookStore.Blazor`{{ else }}`Acme.BookStore.Blazor.Client`{{ end }} project and add the following `DataGridColumn` definition just after the `Name` (book name) column:
+It is very easy to show the *Author Name* in the book list. Open the `/Pages/Books.razor` file in the {{ if UI == "BlazorServer" }}`Acme.BookStore.Blazor` {{ else if UI == "MAUIBlazor" }}`Acme.BookStore.MauiBlazor` {{ else }}`Acme.BookStore.Blazor.Client`{{ end }} project and add the following `DataGridColumn` definition just after the `Name` (book name) column:
 
 ````xml
 <DataGridColumn TItem="BookDto"
@@ -1132,6 +1132,8 @@ The final `@code` block should be the following:
 
     public Books() // Constructor
     {
+        LocalizationResource = typeof(BookStoreResource);
+        
         CreatePolicyName = BookStorePermissions.Books.Create;
         UpdatePolicyName = BookStorePermissions.Books.Edit;
         DeletePolicyName = BookStorePermissions.Books.Delete;

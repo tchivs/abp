@@ -1,8 +1,14 @@
 # MongoDB Integration
 
+> This document offers best practices for implementing MongoDB integration in your modules and applications.
+>
+> **Ensure you've read the [*MongoDB Integration*](../../data/entity-framework-core/index.md) document first.**
+
+## General
+
 * Do define a separated `MongoDbContext` interface and class for each module.
 
-### MongoDbContext Interface
+## MongoDbContext Interface
 
 - **Do** define an **interface** for the `MongoDbContext` that inherits from `IAbpMongoDbContext`.
 - **Do** add a `ConnectionStringName` **attribute** to the `MongoDbContext` interface.
@@ -17,7 +23,7 @@ public interface IAbpIdentityMongoDbContext : IAbpMongoDbContext
 }
 ````
 
-### MongoDbContext class
+## MongoDbContext class
 
 - **Do** inherit the `MongoDbContext` from the `AbpMongoDbContext` class.
 - **Do** add a `ConnectionStringName` attribute to the `MongoDbContext` class.
@@ -34,7 +40,7 @@ public class AbpIdentityMongoDbContext : AbpMongoDbContext, IAbpIdentityMongoDbC
 }
 ```
 
-### Collection Prefix
+## Collection Prefix
 
 - **Do** add static `CollectionPrefix` **property** to the `DbContext` class. Set default value from a constant. Example:
 
@@ -46,7 +52,7 @@ Used the same constant defined for the EF Core integration table prefix in this 
 
 - **Do** always use a short `CollectionPrefix` value for a module to create **unique collection names** in a shared database. `Abp` collection prefix is reserved for ABP core modules.
 
-### Collection Mapping
+## Collection Mapping
 
 - **Do** explicitly **configure all aggregate roots** by overriding the `CreateModel` method of the `MongoDbContext`. Example:
 
@@ -83,7 +89,7 @@ public static class AbpIdentityMongoDbContextExtensions
 }
 ```
 
-### Repository Implementation
+## Repository Implementation
 
 - **Do** **inherit** the repository from the `MongoDbRepository<TMongoDbContext, TEntity, TKey>` class and implement the corresponding repository interface. Example:
 
@@ -124,7 +130,7 @@ public async Task<IdentityUser> FindByNormalizedUserNameAsync(
   * Using `IQueryable<TEntity>` makes the code as much as similar to the EF Core repository implementation and easy to write and read.
 * **Do** implement data filtering if it is not possible to use the `GetMongoQueryable()` method.
 
-### Module Class
+## Module Class
 
 - **Do** define a module class for the MongoDB integration package.
 - **Do** add `MongoDbContext` to the `IServiceCollection` using the `AddMongoDbContext<TMongoDbContext>` method.

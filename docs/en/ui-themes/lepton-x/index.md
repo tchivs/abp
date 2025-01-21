@@ -88,6 +88,8 @@ You can use the following CLI command to download the source-code:
 abp get-source Volo.Abp.LeptonXTheme	
 ```
 
+> If you are using the old ABP CLI, you can use the command: `abp get-source Volo.Abp.LeptonXTheme.Pro`
+
 If you want to download the source code of the preview version, you can use the following command:
 
 ```bash

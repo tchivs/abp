@@ -1,4 +1,4 @@
-# Solution Templates
+# Startup Solution Templates
 
 ABP provides pre-architected and production-ready templates to jump start a new solution.
 

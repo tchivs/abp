@@ -19,7 +19,7 @@ Another common approach to communicating between modules is messaging. By publis
 ABP provides two types of event buses for loosely coupled communication:
 
 * [Local Event Bus](../../framework/infrastructure/event-bus/local/index.md) is suitable for in-process messaging. Since in a modular monolith, both of publisher and subscriber are in the same process, they can communicate in-process, without needing an external message broker.
-* **[Distributed Event Bus](../../framework/infrastructure/event-bus/distributed/index.md)** is normal for inter-process messaging, like microservices, for publishing and subscribing to distributed events. However, ABP's distributed event bus works as local (in-process) by default (actually, it uses the Local Event Bus under the hood by default) unless you configure an external message broker.
+* [Distributed Event Bus](../../framework/infrastructure/event-bus/distributed/index.md) is normal for inter-process messaging, like microservices, for publishing and subscribing to distributed events. However, ABP's distributed event bus works as local (in-process) by default (actually, it uses the Local Event Bus under the hood by default) unless you configure an external message broker.
 
 If you consider converting your modular monolith to a microservice system later, it is best to use the Distributed Event Bus with default local/in-process implementation. It already supports database-level transactional event execution and has no performance penalty. If you switch to an external provider ([RabbitMQ](../../framework/infrastructure/event-bus/distributed/rabbitmq.md), [Kafka](../../framework/infrastructure/event-bus/distributed/kafka.md), etc.), you don't need to change your application code.
 
@@ -74,7 +74,7 @@ namespace ModularCrm.Ordering.Services;
 
 public class OrderAppService : OrderingAppService, IOrderAppService
 {
-    private readonly IRepository<Order> _orderRepository;
+    private readonly IRepository<Order, Guid>  _orderRepository;
     private readonly IProductIntegrationService _productIntegrationService;
     private readonly IDistributedEventBus _distributedEventBus;
 
@@ -218,7 +218,7 @@ We inject the product repository and update the stock count in the event handler
 
 To keep this tutorial more focused, we will not create a UI for creating an order. You can easily create a form to create an order on your user interface. In this section, we will test it just using the Swagger UI.
 
-Graph build the `ModularCrm.Web` application, run it on the ABP Studio's *Solution Runner* panel and browse the application UI as demonstrated earlier.
+Graph build the `ModularCrm` application, run it on the ABP Studio's *Solution Runner* panel and browse the application UI as demonstrated earlier.
 
 Once the application is running and ready, manually type `/swagger` to the end of the URL and press the ENTER key. You should see the Swagger UI that is used to discover and test your HTTP APIs:
 
@@ -228,8 +228,8 @@ Find the *Orders* API, click the *Try it out* button, enter a sample value the t
 
 ````json
 {
-  "productId": "0fbf7dd0-d7e9-0d18-9214-3a14d9fa1b74",
-  "customerName": "David"
+  "customerName": "David",
+  "productId": "e6ce1629-cfb1-1af6-e71c-3a16f10f9cc5"
 }
 ````
 

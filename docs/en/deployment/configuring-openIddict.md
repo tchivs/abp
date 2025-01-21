@@ -4,6 +4,8 @@ This document introduces how to configure `OpenIddict` in the `AuthServer` proje
 
 There are different configurations in the `AuthServer` project for the `Development` and `Production` environments.
 
+> If your solution does not include a project named `.AuthServer`, it means that you might have another project that depends on `AbpAccountPublicWebOpenIddictModule`. The project name can be `MyProject`, `MyProject.Web`, or `MyProject.HttpApi.Host`. They are both `Authentication Server` projects in that context.
+
 ````csharp
 public override void PreConfigureServices(ServiceConfigurationContext context)
 {
@@ -38,10 +40,14 @@ To avoid that, consider creating self-signed certificates and storing them in th
 
 You can use the `dotnet dev-certs https -v -ep openiddict.pfx -p 00000000-0000-0000-0000-000000000000` command to generate the `openiddict.pfx` certificate.
 
+> `openiddict.pfx` is just an example of a filename. You can use any filename for the pfx file.
+
 > `00000000-0000-0000-0000-000000000000` is the password of the certificate, you can change it to any password you want.
 
 >  Also, please remember to copy `openiddict.pfx` to the [Content Root Folder](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.contentrootpath?view=aspnetcore-7.0) of the `AuthServer` website.
 
 > It is recommended to use **two** RSA certificates, distinct from the certificate(s) used for HTTPS: one for encryption, one for signing.
+
+> If you encounter a deployment error on IIS that says **File not found** even though the file exists, it is recommended to set the application pool’s advanced settings **Load User Profile** to **True** to resolve the issue.
 
 For more information, please refer to: https://documentation.openiddict.com/configuration/encryption-and-signing-credentials.html#registering-a-certificate-recommended-for-production-ready-scenarios

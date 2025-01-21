@@ -262,7 +262,7 @@ If you need to replace the component, you can follow the steps below.
 * Create a razor page, like `MyBreadcrumbs.razor`, in your blazor application as shown below:
 
 ```html
-@Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.Common;
+@using Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.Common;
 @using Volo.Abp.DependencyInjection
 
 @inherits Breadcrumbs
@@ -295,7 +295,7 @@ namespace LeptonXLite.DemoApp.Blazor.MyComponents
 * Create a razor page, like `MyContentToolbar.razor`, in your blazor application as shown below:
 
 ```html
-@Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.Common;
+@using Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.Common;
 @using Volo.Abp.DependencyInjection
 
 @inherits ContentToolbar
@@ -328,7 +328,7 @@ namespace LeptonXLite.DemoApp.Blazor.MyComponents
 * Create a razor page, like `MyGeneralSettings.razor`, in your blazor application as shown below:
 
 ```html
-@Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.Common;
+@using Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.Common;
 @using Volo.Abp.DependencyInjection
 
 @inherits GeneralSettings
@@ -361,7 +361,7 @@ namespace LeptonXLite.DemoApp.Blazor.MyComponents
 * Create a razor page, like `MyMobileGeneralSettings.razor`, in your blazor application as shown below:
 
 ```html
-@Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.Common;
+@using Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.Common;
 @using Volo.Abp.DependencyInjection
 
 @inherits MobileGeneralSettings
@@ -400,7 +400,7 @@ Components used in the side menu layout.
 * Create a razor page, like `MyMainMenu.razor`, in your blazor application as shown below:
 
 ```html
-@Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.TopMenu.Navigation;
+@using Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.TopMenu.Navigation;
 @using Volo.Abp.DependencyInjection
 
 @inherits MainMenu
@@ -431,7 +431,7 @@ namespace LeptonXLite.DemoApp.Blazor.MyComponents
 * Create a razor page, like `MyMainMenuItem.razor`, in your blazor application as shown below:
 
 ```html
-@Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.SideMenu.Navigation;
+@using Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.SideMenu.Navigation;
 @using Volo.Abp.DependencyInjection
 
 @inherits MainMenuItem
@@ -464,7 +464,7 @@ namespace LeptonXLite.DemoApp.Blazor.MyComponents
 * Create a razor page, like `MyMobileNavbar.razor`, in your blazor application as shown below:
 
 ```html
-@Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.SideMenu.Navigation;
+@using Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.SideMenu.Navigation;
 @using Volo.Abp.DependencyInjection
 
 @inherits MobileNavbar
@@ -497,7 +497,7 @@ namespace LeptonXLite.DemoApp.Blazor.MyComponents
 * Create a razor page, like `MyMainHeader.razor`, in your blazor application as shown below:
 
 ```html
-@Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.SideMenu.MainHeader
+@using Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.SideMenu.MainHeader
 @using Volo.Abp.DependencyInjection
 
 @inherits MainHeader
@@ -534,7 +534,7 @@ If you need to replace the component, you can follow the steps below.
 * Create a razor page, like `MyMainHeaderBranding.razor`, in your blazor application as shown below:
 
 ```html
-@Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.SideMenu.MainHeader
+@using Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.SideMenu.MainHeader
 @using Volo.Abp.DependencyInjection
 
 @inherits MainHeaderBranding
@@ -571,7 +571,7 @@ If you need to replace the component, you can follow the steps below.
 * Create a razor page, like `MyMainHeaderToolbar.razor`, in your blazor application as shown below:
 
 ```html
-@Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.SideMenu.MainHeader
+@using Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.SideMenu.MainHeader
 @using Volo.Abp.DependencyInjection
 
 @inherits MainHeaderToolbar
@@ -610,7 +610,7 @@ Components used in the top menu layout.
 * Create a razor page, like `MyMainMenu.razor`, in your blazor application as shown below:
 
 ```html
-@Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.TopMenu.Navigation;
+@using Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.TopMenu.Navigation;
 @using Volo.Abp.DependencyInjection
 
 @inherits MainMenu
@@ -641,7 +641,7 @@ namespace LeptonXLite.DemoApp.Blazor.MyComponents
 * Create a razor page, like `MyMainMenuItem.razor`, in your blazor application as shown below:
 
 ```html
-@Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.TopMenu.Navigation;
+@using Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.TopMenu.Navigation;
 @using Volo.Abp.DependencyInjection
 
 @inherits MainMenuItem
@@ -674,7 +674,7 @@ namespace LeptonXLite.DemoApp.Blazor.MyComponents
 * Create a razor page, like `MyMobileNavbar.razor`, in your blazor application as shown below:
 
 ```html
-@Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.TopMenu.Navigation;
+@using Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.TopMenu.Navigation;
 @using Volo.Abp.DependencyInjection
 
 @inherits MobileNavbar
@@ -707,7 +707,7 @@ namespace LeptonXLite.DemoApp.Blazor.MyComponents
 * Create a razor page, like `MyMainHeader.razor`, in your blazor application as shown below:
 
 ```html
-@Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.TopMenu.MainHeader
+@using Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.TopMenu.MainHeader
 @using Volo.Abp.DependencyInjection
 
 @inherits MainHeader
@@ -742,7 +742,7 @@ Application branding can be customized with the `IBrandingProvider`. See the [Br
 * Create a razor page, like `MyMainHeaderBranding.razor`, in your blazor application as shown below:
 
 ```html
-@Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.TopMenu.MainHeader
+@using Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.TopMenu.MainHeader
 @using Volo.Abp.DependencyInjection
 
 @inherits MainHeaderBranding
@@ -779,7 +779,7 @@ If you need to replace the component, you can follow the steps below.
 * Create a razor page, like `MyMainHeaderToolbar.razor`, in your blazor application as shown below:
 
 ```html
-@Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.TopMenu.MainHeader
+@using Volo.Abp.AspNetCore.Components.Web.LeptonXTheme.Components.ApplicationLayout.TopMenu.MainHeader
 @using Volo.Abp.DependencyInjection
 
 @inherits MainHeaderToolbar

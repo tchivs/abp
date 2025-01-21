@@ -21,7 +21,7 @@ The following commands are for creating Angular UI projects:
 * **Entity Framework Core**,  **custom connection string**, creates the project in a new folder:
 
   ```bash
-  abp new Acme.BookStore -u angular -csf --connection-string Server=localhost;Database=MyDatabase;Trusted_Connection=True
+  abp new Acme.BookStore -u angular -csf --connection-string "Server=localhost;Database=MyDatabase;Trusted_Connection=True"
   ```
 
 * **MongoDB**, default app template, mobile project included, creates solution in `C:\MyProjects\Acme.BookStore`

@@ -165,6 +165,7 @@
     "ChooseAnActionForBlog": "Wählen Sie eine Aktion für den Blog",
     "AssignBlogPostsToOtherBlog": "Blogbeiträge einem anderen Blog zuweisen",
     "SelectAnBlogToAssign": "Wählen Sie einen Blog aus, um Blogbeiträge zuzuweisen",
-    "DeleteAllBlogPostsOfThisBlog": "Alle Blogbeiträge dieses Blogs löschen"
+    "DeleteAllBlogPostsOfThisBlog": "Alle Blogbeiträge dieses Blogs löschen",
+    "RequiredPermissionName": "Erforderlicher Berechtigungsname"
   }
 }

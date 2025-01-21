@@ -2,7 +2,7 @@
 ````json
 //[doc-params]
 {
-    "UI": ["MVC","Blazor","BlazorServer", "BlazorWebApp", "NG"],
+    "UI": ["MVC","Blazor","BlazorServer", "BlazorWebApp", "NG", "MAUIBlazor"],
     "DB": ["EF","Mongo"]
 }
 ````
@@ -518,13 +518,16 @@ Now you can see the final result on your browser:
 
 ## Create a Books Page
 
-It's time to create something visible and usable! Right click on the `Pages` folder under the {{ if UI == "BlazorServer" }}`Acme.BookStore.Blazor`{{ else }}`Acme.BookStore.Blazor.Client`{{ end }} project and add a new **razor component**, named `Books.razor`:
+It's time to create something visible and usable! Right click on the `Pages` folder under the {{ if UI == "BlazorServer" }}`Acme.BookStore.Blazor`{{ else if UI == "Blazor" || UI == "BlazorWebApp" }}`Acme.BookStore.Blazor.Client`{{else}} `Acme.BookStore.MauiBlazor` {{ end }} project and add a new **razor component**, named `Books.razor`:
 
 {{ if UI == "Blazor" || UI == "BlazorWebApp" }}
 ![blazor-add-books-component](images/blazor-add-books-component-client.png)
-{{ else }}
+{{ else if UI == "BlazorServer" }}
 ![blazor-add-books-component](images/blazor-add-books-component.png)
+{{ else if UI == "MAUIBlazor" }}
+![maui-blazor-add-books-component](images/maui-blazor-add-books-component.png)
 {{ end }}
+
 
 Replace the contents of this component as shown below:
 
@@ -540,7 +543,7 @@ Replace the contents of this component as shown below:
 
 ### Add the Books Page to the Main Menu
 
-Open the `BookStoreMenuContributor` class in the {{ if UI == "BlazorServer"}}`Acme.BookStore.Blazor`{{ else }}`Acme.BookStore.Blazor.Client`{{ end }} project add the following code to the end of the `ConfigureMainMenuAsync` method:
+Open the `BookStoreMenuContributor` class in the {{ if UI == "BlazorServer"}}`Acme.BookStore.Blazor`{{ else if UI == "MAUIBlazor" }}`Acme.BookStore.MauiBlazor`{{ else }}`Acme.BookStore.Blazor.Client`{{ end }} project add the following code to the end of the `ConfigureMainMenuAsync` method:
 
 ````csharp
 context.Menu.AddItem(
@@ -577,8 +580,6 @@ Open the `Books.razor` and replace the content as the following:
 @using Volo.Abp.Application.Dtos
 @using Acme.BookStore.Books
 @using Acme.BookStore.Localization
-@using Microsoft.Extensions.Localization
-@inject IStringLocalizer<BookStoreResource> L
 @inherits AbpCrudPageBase<IBookAppService, BookDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateBookDto>
 
 <Card>
@@ -625,13 +626,21 @@ Open the `Books.razor` and replace the content as the following:
         </DataGrid>
     </CardBody>
 </Card>
+
+@code
+{
+    public Books() // Constructor
+    {
+        LocalizationResource = typeof(BookStoreResource);
+    }
+}
 ````
 
 > If you see some syntax errors, you can ignore them if your application is properly built and running. Visual Studio still has some bugs with Blazor.
 
 * Inherited from  `AbpCrudPageBase<IBookAppService, BookDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateBookDto>` which implements all the CRUD details for us.
 * `Entities`, `TotalCount`, `PageSize`, `OnDataGridReadAsync` are defined in the base class.
-* Injected `IStringLocalizer<BookStoreResource>` (as `L` object) and used for localization.
+* `LocalizationResource` is set to the `BookStoreResource` to localize the texts.
 
 While the code above is pretty easy to understand, you can check the Blazorise [Card](https://blazorise.com/docs/components/card/) and [DataGrid](https://blazorise.com/docs/extensions/datagrid/) documents to understand them better.
 

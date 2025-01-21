@@ -13,6 +13,7 @@ using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.ObjectExtending;
 using Volo.Abp.ObjectExtending.Modularity;
+using Volo.Abp.SettingManagement.Web;
 using Volo.Abp.SettingManagement.Web.Pages.SettingManagement;
 using Volo.Abp.Threading;
 using Volo.Abp.UI.Navigation;
@@ -29,7 +30,8 @@ namespace Volo.CmsKit.Admin.Web;
 
 [DependsOn(
     typeof(CmsKitAdminApplicationContractsModule),
-    typeof(CmsKitCommonWebModule)
+    typeof(CmsKitCommonWebModule),
+    typeof(AbpSettingManagementWebModule)
     )]
 public class CmsKitAdminWebModule : AbpModule
 {

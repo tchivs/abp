@@ -498,6 +498,8 @@ Use `ICachedServiceProvider` (instead of `ITransientCachedServiceProvider`) unle
 
 > ABP also provides the `IAbpLazyServiceProvider` service. It does exists for backward compatibility and works exactly same with the `ITransientCachedServiceProvider` service. So, use the `ITransientCachedServiceProvider` since the `IAbpLazyServiceProvider` might be removed in future ABP versions.
 
+> Another advantage of using `ICachedServiceProvider` is that, during an HTTP request, if a service's constructor requires injecting many dependencies, it can negatively impact performance, as the injected services may not all be used by the current request. By resolving services on-demand, performance degradation can be effectively avoided.
+
 ## Advanced Features
 
 ### IServiceCollection.OnRegistered Event

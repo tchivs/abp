@@ -231,6 +231,7 @@
     "ChooseAnActionForBlog": "Выберите действие для блога",
     "AssignBlogPostsToOtherBlog": "Назначить сообщения в блоге другому блогу",
     "SelectAnBlogToAssign": "Выберите блог для назначения",
-    "DeleteAllBlogPostsOfThisBlog": "Удалить все сообщения в блоге этого блога"
+    "DeleteAllBlogPostsOfThisBlog": "Удалить все сообщения в блоге этого блога",
+    "RequiredPermissionName": "Имя требуемого разрешения"
   }
 }

@@ -2,6 +2,58 @@
 
 This document contains **brief release notes** for each ABP Studio release. Release notes only include **major features** and **visible enhancements**. Therefore, they don't include all the development done in the related version. 
 
+## 0.9.20 (2025-01-08)
+
+* Upgraded templates to version `9.0.3`.
+* Fixed Invariant Culture problem in source code downloading.
+* Added missing linux support to OldCliInstaller
+* Increased database test connection timeout up to 10seconds.
+
+## 0.9.19 (2025-01-02)
+
+* Disabled auto-scroll when scrolled up in the logging section.
+* Added localhost development certificate check during solution load.
+* Added testing connection string in project creation.
+* Made enhancements for exception handling.
+
+## 0.9.18 (2024-12-24)
+
+* Fixed Blazor WebApp Kubernetes problems.
+* Added Visual Studio & Rider options to solution root.
+* Fixed problems in blazor-server nolayers template.
+
+## 0.9.17 (2024-12-17)
+
+* Added social login option to the "No Layers" Blazor WebAssembly template.
+* Fixed AutoMapper missing configuration exception problem during module import.
+* Fixed Blazor WebAssembly build issue for the MAUI template.
+* Fixed a problem that prevented ABP Studio from opening on macOS.
+
+## 0.9.16 (2024-12-11)
+
+> This version does not work for macOS, we are currently working on that manner.
+
+* Added a new command for refreshing the previously runned C#/Js Proxies.
+* Added kubernetes configurations to Blazor WebApp for Microservice Template.
+* Handled multiple dbcontexts for ef core migration operations.
+* Made enhancements for dynamic localization feature in Microservice Template.
+* Upgraded LeptonX Theme package versions to `4.0.2`.
+
+## 0.9.15 (2024-12-05)
+
+* Upgraded templates to version `9.0.1`.
+* Fixed problems in the microservice service_nolayers template.
+* Fixed microservice angular template for wrong file-management module reference.
+* Fixed added extra lines in the hosts.txt file.
+
+## 0.9.14 (2024-12-03)
+
+* Refactored `dotnet watch` command in solution runner.
+* Added multi-tenancy option for open source startup templates.
+* Implemented adding angular library when a new microservice is created.
+* Adjusted *Optional Modules* section in solution configurations
+* Fixed bugs in the nolayers host project.
+
 ## 0.9.13 (2024-11-25)
 
 * Angular - Theme-based Fixes for the Home Page.

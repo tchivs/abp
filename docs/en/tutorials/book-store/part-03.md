@@ -2,7 +2,7 @@
 ````json
 //[doc-params]
 {
-    "UI": ["MVC","Blazor","BlazorServer","BlazorWebApp","NG"],
+    "UI": ["MVC","Blazor","BlazorServer","BlazorWebApp","NG", "MAUIBlazor"],
     "DB": ["EF","Mongo"]
 }
 ````
@@ -1101,7 +1101,7 @@ Clicking the "Delete" action calls the `delete` method which then shows a confir
 
 {{end}}
 
-{{if UI == "Blazor" || UI == "BlazorServer" || UI == "BlazorWebApp"}}
+{{if UI == "Blazor" || UI == "BlazorServer" || UI == "BlazorWebApp" || UI == "MAUIBlazor"}}
 
 ## Creating a New Book
 
@@ -1292,13 +1292,13 @@ We can now define a modal to edit the book. Add the following code to the end of
 
 The base `AbpCrudPageBase` uses the [object to object mapping](../../framework/infrastructure/object-to-object-mapping.md) system to convert an incoming `BookDto` object to a `CreateUpdateBookDto` object. So, we need to define the mapping.
 
-Open the `BookStoreBlazorAutoMapperProfile` inside the {{ if UI == "BlazorServer" }}`Acme.BookStore.Blazor`{{ else }}`Acme.BookStore.Blazor.Client`{{ end }} project and change the content as the following:
+Open the `BookStoreBlazorAutoMapperProfile` inside the {{ if UI == "BlazorServer" }}`Acme.BookStore.Blazor` {{ else if UI == "MAUIBlazor" }}`Acme.BookStore.MauiBlazor` {{ else }}`Acme.BookStore.Blazor.Client`{{ end }} project and change the content as the following:
 
 ````csharp
 using Acme.BookStore.Books;
 using AutoMapper;
 
-{{ if UI == "BlazorServer" }}namespace Acme.BookStore.Blazor;{{ else }}namespace Acme.BookStore.Blazor.Client;{{ end }}
+{{ if UI == "BlazorServer" }}namespace Acme.BookStore.Blazor; {{ else if UI == "MAUIBlazor" }}namespace Acme.BookStore.MauiBlazor; {{ else }}namespace Acme.BookStore.Blazor.Client;{{ end }}
 
 public class BookStoreBlazorAutoMapperProfile : Profile
 {
@@ -1351,7 +1351,6 @@ Here's the complete code to create the book management CRUD page, that has been 
 @using Acme.BookStore.Localization
 @using Microsoft.Extensions.Localization
 @using Volo.Abp.AspNetCore.Components.Web
-@inject IStringLocalizer<BookStoreResource> L
 @inject AbpBlazorMessageLocalizerHelper<BookStoreResource> LH
 @inherits AbpCrudPageBase<IBookAppService, BookDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateBookDto>
 
@@ -1396,7 +1395,7 @@ Here's the complete code to create the book management CRUD page, that has been 
                                 Field="@nameof(BookDto.Type)"
                                 Caption="@L["Type"]">
                     <DisplayTemplate>
-                        @L[$"Enum:BookType.{context.Type}"]
+                        @L[$"Enum:BookType.{context.Type:D}"]
                     </DisplayTemplate>
                 </DataGridColumn>
                 <DataGridColumn TItem="BookDto"
@@ -1527,6 +1526,14 @@ Here's the complete code to create the book management CRUD page, that has been 
         </Form>
     </ModalContent>
 </Modal>
+
+@code
+{
+    public Books() // Constructor
+    {
+        LocalizationResource = typeof(BookStoreResource);
+    }
+}
 ````
 
 {{end}}

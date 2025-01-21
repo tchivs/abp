@@ -231,6 +231,7 @@
     "ChooseAnActionForBlog": "Odaberite radnju za blog",
     "AssignBlogPostsToOtherBlog": "Dodijelite postove na blogu drugom blogu",
     "SelectAnBlogToAssign": "Odaberite blog za dodjelu",
-    "DeleteAllBlogPostsOfThisBlog": "Izbrišite sve postove na blogu"
+    "DeleteAllBlogPostsOfThisBlog": "Izbrišite sve postove na blogu",
+    "RequiredPermissionName": "Potrebno ime dozvole"
   }
 }

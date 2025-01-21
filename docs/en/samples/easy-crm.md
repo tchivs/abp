@@ -35,7 +35,7 @@ When you download and open the zip file, you will see two folders:
 
 * First, follow all the steps above to run the server side and seed the sample data.
 * Open a command prompt in the angular folder.
-* Run the `yarn` command to install NPM packages (requires the [Yarn](https://yarnpkg.com/) package manager).
+* Run the `yarn` command to install NPM packages (requires the [Yarn v1.22+ (not v2)](https://classic.yarnpkg.com/en/docs/install) package manager).
 * Run the `yarn start` command to run the Angular application. It will automatically open the `localhost://4200` in your default browser once the application initialized.
 
 ### Blazor UI

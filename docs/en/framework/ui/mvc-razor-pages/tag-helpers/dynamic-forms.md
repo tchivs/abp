@@ -23,7 +23,7 @@ public class DynamicFormsModel : PageModel
         new SelectListItem { Value = "CA", Text = "Canada"},
         new SelectListItem { Value = "US", Text = "USA"},
         new SelectListItem { Value = "UK", Text = "United Kingdom"},
-        new SelectListItem { Value = "RU", Text = "Russia"}
+        new SelectListItem { Value = "RU", Text = "Turkey"}
     };
 
     public void OnGet()
@@ -217,7 +217,7 @@ public class DynamicFormsModel : PageModel
         new SelectListItem { Value = "CA", Text = "Canada"},
         new SelectListItem { Value = "US", Text = "USA"},
         new SelectListItem { Value = "UK", Text = "United Kingdom"},
-        new SelectListItem { Value = "RU", Text = "Russia"}
+        new SelectListItem { Value = "RU", Text = "Turkey"}
     };
 
     public void OnGet()

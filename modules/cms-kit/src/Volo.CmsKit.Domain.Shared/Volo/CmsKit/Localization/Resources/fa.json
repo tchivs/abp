@@ -187,6 +187,7 @@
     "ChooseAnActionForBlog": "یک عمل برای وبلاگ انتخاب کنید",
     "AssignBlogPostsToOtherBlog": "پست های وبلاگ را به وبلاگ دیگری اختصاص دهید",
     "SelectAnBlogToAssign": "یک وبلاگ برای اختصاص دادن انتخاب کنید",
-    "DeleteAllBlogPostsOfThisBlog": "تمام پست های وبلاگ این وبلاگ را حذف کنید"
+    "DeleteAllBlogPostsOfThisBlog": "تمام پست های وبلاگ این وبلاگ را حذف کنید",
+    "RequiredPermissionName": "نام مجوز مورد نیاز"
   }
 }

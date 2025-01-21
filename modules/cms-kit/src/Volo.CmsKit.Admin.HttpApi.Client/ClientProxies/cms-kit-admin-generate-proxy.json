@@ -40,7 +40,7 @@
                       "typeAsString": "System.Nullable`1[[System.Guid, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib",
                       "type": "System.Guid?",
                       "typeSimple": "string?",
-                      "isOptional": false,
+                      "isOptional": true,
                       "defaultValue": null
                     }
                   ],
@@ -2167,6 +2167,23 @@
                     "type": "Volo.Abp.Application.Dtos.PagedResultDto<Volo.CmsKit.Admin.Menus.PageLookupDto>",
                     "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<Volo.CmsKit.Admin.Menus.PageLookupDto>"
                   }
+                },
+                {
+                  "name": "GetPermissionLookupAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "inputDto",
+                      "typeAsString": "Volo.CmsKit.Admin.Menus.PermissionLookupInputDto, Volo.CmsKit.Admin.Application.Contracts",
+                      "type": "Volo.CmsKit.Admin.Menus.PermissionLookupInputDto",
+                      "typeSimple": "Volo.CmsKit.Admin.Menus.PermissionLookupInputDto",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "Volo.Abp.Application.Dtos.ListResultDto<Volo.CmsKit.Admin.Menus.PermissionLookupDto>",
+                    "typeSimple": "Volo.Abp.Application.Dtos.ListResultDto<Volo.CmsKit.Admin.Menus.PermissionLookupDto>"
+                  }
                 }
               ]
             }
@@ -2481,6 +2498,43 @@
               "returnValue": {
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<Volo.CmsKit.Admin.Menus.PageLookupDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<Volo.CmsKit.Admin.Menus.PageLookupDto>"
+              },
+              "allowAnonymous": false,
+              "implementFrom": "Volo.CmsKit.Admin.Menus.IMenuItemAdminAppService"
+            },
+            "GetPermissionLookupAsyncByInputDto": {
+              "uniqueName": "GetPermissionLookupAsyncByInputDto",
+              "name": "GetPermissionLookupAsync",
+              "httpMethod": "GET",
+              "url": "api/cms-kit-admin/menu-items/lookup/permissions",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "inputDto",
+                  "typeAsString": "Volo.CmsKit.Admin.Menus.PermissionLookupInputDto, Volo.CmsKit.Admin.Application.Contracts",
+                  "type": "Volo.CmsKit.Admin.Menus.PermissionLookupInputDto",
+                  "typeSimple": "Volo.CmsKit.Admin.Menus.PermissionLookupInputDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "inputDto",
+                  "name": "Filter",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "inputDto"
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.Application.Dtos.ListResultDto<Volo.CmsKit.Admin.Menus.PermissionLookupDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.ListResultDto<Volo.CmsKit.Admin.Menus.PermissionLookupDto>"
               },
               "allowAnonymous": false,
               "implementFrom": "Volo.CmsKit.Admin.Menus.IMenuItemAdminAppService"

@@ -81,6 +81,16 @@ Configure<LeptonXThemeOptions>(options =>
 >
 > If your layout is **TopMenu**, then you have to add them under the **wwwroot/Themes/LeptonX/Global/top-menu/css/** folder.
 
+
+#### Handling Style Changes
+
+You can add extra logic by using javascript API when style is changed with the following event.
+```js
+leptonx.CSSLoadEvent.on(event =>{
+    console.log("Style is changed from " + event.detail.previousTheme + " to "+ event.detail.theme);
+});
+```
+
 --- 
 
 ### LeptonXThemeMvcOptions

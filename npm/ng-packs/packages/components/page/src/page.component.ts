@@ -7,6 +7,7 @@ import {
 } from './page-parts.component';
 
 @Component({
+  standalone: false,
   selector: 'abp-page',
   templateUrl: './page.component.html',
   encapsulation: ViewEncapsulation.None,

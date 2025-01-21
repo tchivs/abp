@@ -231,6 +231,7 @@
     "ChooseAnActionForBlog": "Valitse toiminto blogille",
     "AssignBlogPostsToOtherBlog": "Määritä blogiviestit toiseen blogiin",
     "SelectAnBlogToAssign": "Valitse blogi, johon haluat määrittää",
-    "DeleteAllBlogPostsOfThisBlog": "Poista tämän blogin kaikki blogiviestit"
+    "DeleteAllBlogPostsOfThisBlog": "Poista tämän blogin kaikki blogiviestit",
+    "RequiredPermissionName": "Tarvittava lupa"
   }
 }

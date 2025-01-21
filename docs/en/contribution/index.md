@@ -50,6 +50,12 @@ This is the recommended approach, since it automatically finds all missing texts
 
 If you want to make a change on a specific resource file, you can find the file yourself, make the necessary change (or create a new file for your language) and send a pull request on GitHub.
 
+### Commercial Modules
+
+The commercial modules are not open source, and their localization files are not available in the public repository. The open-source module, `Account`, and the commercial module, `Account.Pro`, may have different translations. 
+
+If you would like to translate a commercial module, please [create an issue](https://github.com/abpframework/abp/issues/new) on Github, and we will provide the necessary files (`abp-translation.json` for one or all modules).
+
 ## Bug Report
 
 If you find any bug, please [create an issue on the Github repository](https://github.com/abpframework/abp/issues/new).

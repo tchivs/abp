@@ -1,9 +1,10 @@
 var abp = abp || {};
 
 (function () {
-
-    abp.SwaggerUIBundle = function (configObject) {
-
+    
+    var oldSwaggerUIBundle = SwaggerUIBundle;
+    
+    SwaggerUIBundle = function (configObject) {
         var excludeUrl = ["swagger.json", "connect/token"]
         var firstRequest = true;
         var oidcSupportedFlows = configObject.oidcSupportedFlows || [];
@@ -109,6 +110,9 @@ var abp = abp || {};
             });
         }
 
-        return SwaggerUIBundle(configObject);
+        return oldSwaggerUIBundle(configObject);
     }
+    
+    SwaggerUIBundle = Object.assign(SwaggerUIBundle, oldSwaggerUIBundle);
+    
 })();
