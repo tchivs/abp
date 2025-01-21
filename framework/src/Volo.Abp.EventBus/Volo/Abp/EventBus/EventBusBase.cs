@@ -131,13 +131,13 @@ public abstract class EventBusBase : IEventBus
         }
     }
 
-    protected virtual async Task TriggerHandlersAsync(Type eventType, object eventData, List<Exception> exceptions, InboxConfig inboxConfig = null)
+    protected virtual async Task TriggerHandlersAsync(Type eventType, object eventData, List<Exception> exceptions, InboxConfig? inboxConfig = null)
     {
         await new SynchronizationContextRemover();
 
-        foreach (var handlerFactories in GetHandlerFactories(eventType))
+        foreach (var handlerFactories in GetHandlerFactories(eventType).ToList())
         {
-            foreach (var handlerFactory in handlerFactories.EventHandlerFactories)
+            foreach (var handlerFactory in handlerFactories.EventHandlerFactories.ToList())
             {
                 await TriggerHandlerAsync(handlerFactory, handlerFactories.EventType, eventData, exceptions, inboxConfig);
             }
@@ -154,7 +154,7 @@ public abstract class EventBusBase : IEventBus
             {
                 var baseEventType = eventType.GetGenericTypeDefinition().MakeGenericType(baseArg);
                 var constructorArgs = ((IEventDataWithInheritableGenericArgument)eventData).GetConstructorArgs();
-                var baseEventData = Activator.CreateInstance(baseEventType, constructorArgs);
+                var baseEventData = Activator.CreateInstance(baseEventType, constructorArgs)!;
                 await PublishToEventBusAsync(baseEventType, baseEventData);
             }
         }
@@ -197,7 +197,7 @@ public abstract class EventBusBase : IEventBus
     protected abstract IEnumerable<EventTypeWithEventHandlerFactories> GetHandlerFactories(Type eventType);
 
     protected virtual async Task TriggerHandlerAsync(IEventHandlerFactory asyncHandlerFactory, Type eventType,
-        object eventData, List<Exception> exceptions, InboxConfig inboxConfig = null)
+        object eventData, List<Exception> exceptions, InboxConfig? inboxConfig = null)
     {
         using (var eventHandlerWrapper = asyncHandlerFactory.GetHandler())
         {
@@ -218,7 +218,7 @@ public abstract class EventBusBase : IEventBus
             }
             catch (TargetInvocationException ex)
             {
-                exceptions.Add(ex.InnerException);
+                exceptions.Add(ex.InnerException!);
             }
             catch (Exception ex)
             {

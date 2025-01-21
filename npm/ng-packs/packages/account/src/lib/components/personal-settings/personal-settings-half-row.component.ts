@@ -3,10 +3,11 @@ import {
   EXTENSIONS_FORM_PROP,
   FormProp,
   EXTENSIBLE_FORM_VIEW_PROVIDER,
-} from '@abp/ng.theme.shared/extensions';
+} from '@abp/ng.components/extensible';
 import { UntypedFormGroup } from '@angular/forms';
 
 @Component({
+  standalone: false,
   selector: 'abp-personal-settings-half-row',
   template: ` <div class="w-50 d-inline">
     <label [attr.for]="name" class="form-label">{{ displayName | abpLocalization }} </label>
