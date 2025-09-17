@@ -1,8 +1,9 @@
 import { makeEnvironmentProviders, Provider, provideAppInitializer, inject } from '@angular/core';
 import { TitleStrategy } from '@angular/router';
 import {
-  HTTP_INTERCEPTORS,
   provideHttpClient,
+  withFetch,
+  withInterceptors,
   withInterceptorsFromDi,
   withXsrfConfiguration,
 } from '@angular/common/http';
@@ -25,7 +26,7 @@ import { DEFAULT_DYNAMIC_LAYOUTS } from '../constants';
 import { LocalizationService, LocalStorageListenerService, AbpTitleStrategy } from '../services';
 import { DefaultQueueManager, getInitialData } from '../utils';
 import { CookieLanguageProvider, IncludeLocalizationResourcesProvider, LocaleProvider } from './';
-import { TimezoneInterceptor } from '../interceptors';
+import { timezoneInterceptor, transferStateInterceptor } from '../interceptors';
 
 export enum CoreFeatureKind {
   Options,
@@ -105,6 +106,8 @@ export function provideAbpCore(...features: CoreFeature<CoreFeatureKind>[]) {
         cookieName: 'XSRF-TOKEN',
         headerName: 'RequestVerificationToken',
       }),
+      withFetch(),
+      withInterceptors([transferStateInterceptor, timezoneInterceptor]),
     ),
     provideAppInitializer(async () => {
       inject(LocalizationService);
@@ -127,11 +130,6 @@ export function provideAbpCore(...features: CoreFeature<CoreFeatureKind>[]) {
     {
       provide: TitleStrategy,
       useExisting: AbpTitleStrategy,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TimezoneInterceptor,
-      multi: true,
     },
   ];
 

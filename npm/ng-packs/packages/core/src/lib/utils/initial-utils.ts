@@ -49,7 +49,8 @@ export async function getInitialData() {
       return throwError(() => error);
     }),
   );
-  await lastValueFrom(result$);
+  // TODO: Not working with SSR
+  // await lastValueFrom(result$);
   await localeInitializer(injector);
 }
 

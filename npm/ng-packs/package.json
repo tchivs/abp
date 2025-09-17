@@ -38,7 +38,11 @@
     "lerna": "lerna",
     "migrate-nx": "yarn nx migrate --run-migrations",
     "copy-to:app": "cd scripts && yarn && yarn copy-to-templates -t app",
-    "update-version": "nx generate @abp/nx.generators:update-version"
+    "update-version": "nx generate @abp/nx.generators:update-version",
+    "dev:ssr": "nx serve-ssr dev-app",
+    "serve:ssr": "node dist/dev-app/server/main.js",
+    "build:ssr": "ng build && ng run dev-app:server",
+    "prerender": "ng run dev-app:prerender"
   },
   "private": true,
   "devDependencies": {
@@ -52,7 +56,8 @@
     "@angular-eslint/eslint-plugin-template": "~20.0.0",
     "@angular-eslint/template-parser": "~20.0.0",
     "@angular/animations": "~20.0.0",
-    "@angular/cli": "~20.0.1",
+    "@angular/build": "~20.0.0",
+    "@angular/cli": "~20.0.0",
     "@angular/common": "~20.0.0",
     "@angular/compiler": "~20.0.0",
     "@angular/compiler-cli": "~20.0.0",
@@ -62,7 +67,9 @@
     "@angular/localize": "~20.0.0",
     "@angular/platform-browser": "~20.0.0",
     "@angular/platform-browser-dynamic": "~20.0.0",
+    "@angular/platform-server": "~20.0.0",
     "@angular/router": "~20.0.0",
+    "@angular/ssr": "~20.0.0",
     "@fortawesome/fontawesome-free": "^6.0.0",
     "@ng-bootstrap/ng-bootstrap": "~19.0.0",
     "@ngneat/spectator": "~19.6.2",
@@ -75,6 +82,7 @@
     "@nx/jest": "~21.2.0",
     "@nx/js": "~21.2.0",
     "@nx/plugin": "~21.2.0",
+    "@nx/web": "~21.2.0",
     "@nx/workspace": "~21.2.0",
     "@popperjs/core": "~2.11.0",
     "@schematics/angular": "~20.0.0",
@@ -83,21 +91,24 @@
     "@swc/core": "~1.5.0",
     "@swc/helpers": "~0.5.0",
     "@swimlane/ngx-datatable": "~21.1.0",
+    "@types/express": "~5.0.0",
     "@types/jest": "29.5.14",
-    "@types/node": "^20.0.0",
+    "@types/node": "~20.11.0",
     "@typescript-eslint/eslint-plugin": "7.16.0",
     "@typescript-eslint/parser": "7.16.0",
     "@typescript-eslint/utils": "^7.16.0",
-    "angular-oauth2-oidc": "^20.0.0",
+    "angular-oauth2-oidc": "~20.0.0",
     "autoprefixer": "^10.4.21",
-    "bootstrap": "^5.0.0",
-    "bootstrap-icons": "^1.0.0",
-    "chart.js": "^4.0.0",
+    "bootstrap": "~5.0.0",
+    "bootstrap-icons": "~1.13.0",
+    "browser-sync": "~3.0.0",
+    "chart.js": "~4.0.0",
     "cypress": "^7.0.0",
     "dotenv": "10.0.0",
-    "eslint": "^8.0.0",
+    "eslint": "~8.0.0",
     "eslint-config-prettier": "10.0.0",
-    "eslint-plugin-cypress": "^2.10.3",
+    "eslint-plugin-cypress": "^3.5.0",
+    "express": "~5.1.0",
     "got": "^11.0.0",
     "jest": "^29.0.0",
     "jest-canvas-mock": "^2.0.0",
@@ -123,7 +134,7 @@
     "ts-jest": "29.1.0",
     "ts-node": "10.9.1",
     "ts-toolbelt": "^9.0.0",
-    "tslib": "^2.0.0",
+    "tslib": "^2.3.0",
     "tslint": "~6.1.0",
     "typescript": "~5.8.0",
     "zone.js": "~0.15.0"
@@ -133,5 +144,7 @@
       "npx prettier --write --config .prettierrc "
     ]
   },
-  "dependencies": {}
+  "dependencies": {
+    "openid-client": "^6.6.4"
+  }
 }

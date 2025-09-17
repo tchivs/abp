@@ -12,12 +12,13 @@ import {
   OnChanges,
   OnDestroy,
   Output,
+  PLATFORM_ID,
   signal,
   SimpleChanges,
   TemplateRef,
   TrackByFunction,
 } from '@angular/core';
-import { AsyncPipe, NgComponentOutlet, NgTemplateOutlet } from '@angular/common';
+import { AsyncPipe, isPlatformBrowser, NgComponentOutlet, NgTemplateOutlet } from '@angular/common';
 
 import { Observable, filter, map, Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 
@@ -84,6 +85,8 @@ export class ExtensibleTableComponent<R = any> implements OnChanges, AfterViewIn
   protected readonly timeZoneService = inject(TimezoneService);
   protected readonly entityPropTypeClasses = inject(ENTITY_PROP_TYPE_CLASSES);
   protected readonly permissionService = inject(PermissionService);
+  private platformId = inject(PLATFORM_ID);
+  protected isBrowser = isPlatformBrowser(this.platformId);
 
   protected _actionsText!: string;
   @Input()

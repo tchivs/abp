@@ -1,7 +1,7 @@
 import { ProfileService } from '@abp/ng.account.core/proxy';
 import { fadeIn, LoadingDirective } from '@abp/ng.theme.shared';
 import { transition, trigger, useAnimation } from '@angular/animations';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { eAccountComponents } from '../../enums/components';
 import { ManageProfileStateService } from '../../services/manage-profile.state.service';
 import { NgClass, AsyncPipe } from '@angular/common';

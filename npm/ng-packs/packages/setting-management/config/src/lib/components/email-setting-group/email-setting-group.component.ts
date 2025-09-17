@@ -22,7 +22,7 @@ import {
   ConfigStateService,
   LocalizationPipe,
   LocalizationService,
-  PermissionDirective,
+  PermissionDirective
 } from '@abp/ng.core';
 import { NgxValidateCoreModule } from '@ngx-validate/core';
 import { CommonModule } from '@angular/common';
