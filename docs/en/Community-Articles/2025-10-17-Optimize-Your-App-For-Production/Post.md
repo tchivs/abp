@@ -18,13 +18,13 @@ I see way too many .NET apps go to prod like it’s still “F5 on my laptop.”
 
 ## 1) Publish Command and CSPROJ  Settings
 
-Don’t go to production with debug build! See the below command which publishes a .NET app for production.
+Never go to production with debug build! See the below command which publishes properly a .NET app for production.
 
 ```bash
 dotnet publish -c Release -o out -p:PublishTrimmed=true -p:PublishSingleFile=true -p:ReadyToRun=true
 ```
 
-`csproj` changes for the best production settings:
+`csproj` for the optimum production publish:
 
 ```xml
 <PropertyGroup>
@@ -35,11 +35,11 @@ dotnet publish -c Release -o out -p:PublishTrimmed=true -p:PublishSingleFile=tru
 </PropertyGroup>
 ```
 
-- **Trim** is great for APIs. Heavy reflection? Add `DynamicDependency` or a linker file.
+- **PublishTrimmed** It's trimmimg assemblies. What's that!? It removes unused code from your application and its dependencies, hence it reduces the output files.
 
-- **PublishReadyToRun** When you normally build a .NET app, your C# code is compiled into **IL** (Intrmediate Language), at runtime, the JIT (Just-In-Time) Compiler turns that IL into native CPU instructions when your app runs. This slows down startup. When you enable `PublishReadyToRun`, the build process precompiles your IL into native code ahead of time called AOT. This way your app starts faster. The downside is; the output files are now bigger. Also it'll compile for Windows and will not run on Linux anymore.
+- **PublishReadyToRun** When you normally build a .NET app, your C# code is compiled into **IL** (Intrmediate Language). When your app runs, the JIT Compiler turns that IL code into native CPU commands. But this takes much time on startup. When you enable `PublishReadyToRun`, the build process precompiles your IL into native code and it's called AOT (Ahead Of Time). Hence your app starts faster... But the downside is; the output files are now a bit bigger. Another thing; it'll compile only for a specific OS like Windows and will not run on Linux anymore.
 
-- **Self-contained** When you publish your .NET app this way, it ncludes the .NET runtime inside your app files. It will run even on a machine that doesn’t have .NET installed. The binary is larger, but the runtime version is exactly what you built with. The downside is; bigger outputs.
+- **Self-contained** When you publish your .NET app this way, it ncludes the .NET runtime inside your app files. It will run even on a machine that doesn’t have .NET installed. The output size gets larger, but the runtime version is exactly what you built with.
 
   
 
